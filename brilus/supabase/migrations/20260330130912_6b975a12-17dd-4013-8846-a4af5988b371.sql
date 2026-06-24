@@ -1,0 +1,85 @@
+
+INSERT INTO public.induction_modules (module_number, title, description, order_index, visible)
+VALUES (4, 'Comunicación con Familias en Brilus', 'Competencias del IBT para establecer una relación terapéutica sólida, ética y profesional con las familias, primera visita al hogar, manejo de expectativas y comunicación estratégica.', 4, true);
+
+INSERT INTO public.induction_quiz_questions (module_id, question_text, option_a, option_b, option_c, option_d, correct_answer, order_index)
+VALUES
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   '¿Cuál es el objetivo principal de los primeros 10 minutos en la primera visita al hogar?',
+   'Comenzar inmediatamente con el registro de datos en Hi Rasmus.',
+   'Establecer el tono de la relación, observar al niño desde la distancia y validar el estado actual de la familia.',
+   'Explicar a los padres todos los conceptos técnicos de ABA para demostrar autoridad.',
+   'Corregir inmediatamente cualquier conducta disruptiva que presente el niño al llegar.',
+   'b', 1),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   'Durante la primera visita, observas que la familia se quita los zapatos al entrar a la casa. ¿Cuál es la acción correcta siguiendo el protocolo de Brilus?',
+   'Ignorar el gesto y entrar con zapatos para mantener la postura profesional.',
+   'Pedir permiso para dejarte los zapatos puestos por razones de seguridad.',
+   'Ofrecer quitarte los tuyos para respetar las normas del hogar y mostrar sensibilidad cultural.',
+   'Indicar a la familia que, por política de Brilus, el personal debe usar calzado siempre.',
+   'c', 2),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   'Una madre te pregunta con entusiasmo: "¿En cuánto tiempo mi hijo empezará a hablar?". Según el manejo de expectativas, ¿qué debes responder?',
+   '"Con nuestro método, le aseguro que verá resultados en menos de un mes".',
+   '"No estoy autorizada para responder eso, pregúntele a la oficina".',
+   '"ABA no es magia. Es un proceso; algunos niños avanzan rápido y otros más lento. Vamos a trabajar juntos en ello".',
+   '"Depende de cuántas horas extra de terapia esté dispuesta a pagar".',
+   'c', 3),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   '¿Qué significa el concepto "Autoridad con Calidez" en la comunicación de Brilus?',
+   'Ser extremadamente estricto con las reglas pero sonreír al decirlas.',
+   'Demostrar que sabes lo que haces con seguridad y respeto, sin ser arrogante.',
+   'Dejar que los padres tomen todas las decisiones clínicas para que se sientan cómodos.',
+   'Actuar como un amigo cercano de la familia para que no cuestionen tus métodos.',
+   'b', 4),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   'Si un padre te pregunta sobre un cambio en el plan de tratamiento que no conoces o no entiendes, ¿cuál es la respuesta ética?',
+   'Inventar una respuesta lógica para no parecer poco preparado.',
+   '"No estoy seguro en este momento, lo voy a consultar con mi supervisora para darte una mejor respuesta".',
+   'Decirle al padre que ese cambio no es necesario y que tú seguirás igual.',
+   'Cambiar de tema rápidamente para evitar la confrontación.',
+   'b', 5),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   '¿Cuál de estos es un límite profesional que un IBT DEBE mantener en Brilus?',
+   'Aceptar invitaciones a fiestas familiares para conocer mejor al alumno.',
+   'Prestar dinero a la familia si notas que tienen una emergencia.',
+   'Ser cordial y cercano, pero evitar convertirse en "amigo" de la familia o involucrarse en sus conflictos.',
+   'Compartir tus problemas personales con los padres para generar empatía.',
+   'c', 6),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   'Un padre intenta discutir contigo un ajuste en el pago de la factura mensual. ¿Cómo debes proceder?',
+   'Intentar darle un descuento tú mismo para mantenerlo contento.',
+   'Escuchar la queja y prometer que Brilus hará el ajuste.',
+   'Validar que entiendes su preocupación y canalizarlo inmediatamente con el equipo administrativo de Brilus.',
+   'Decirle que no es tu problema y que solo vas a dar terapia.',
+   'c', 7),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   '¿Cuál es el riesgo de usar "jerga técnica" (términos muy complejos) con las familias?',
+   'Que los padres se sientan intimidados y la comunicación pierda su utilidad práctica.',
+   'Que la familia crea que eres demasiado inteligente para el caso.',
+   'Que el niño se confunda al escuchar palabras largas.',
+   'No hay riesgo; mientras más técnico hables, más profesional pareces.',
+   'a', 8),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   'Al cierre de una sesión, ¿cuál es la mejor manera de comunicar el progreso del día?',
+   'Dar un reporte detallado de todos los errores que cometió el alumno.',
+   'Mencionar un logro o avance específico del día y comentar brevemente lo trabajado.',
+   'Irse rápido sin hablar con nadie para no interrumpir la rutina de la casa.',
+   'Decir "Todo bien" sin dar detalles para no agobiar a la familia.',
+   'b', 9),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 4),
+   '¿Por qué es fundamental que la familia esté involucrada en la terapia?',
+   'Para que ellos hagan el trabajo del IBT cuando él no esté.',
+   'Porque la generalización de habilidades ocurre cuando los padres practican lo aprendido en la vida diaria.',
+   'Para que puedan vigilar que el IBT cumpla sus horas.',
+   'No es fundamental; el IBT solo puede lograr todos los objetivos.',
+   'b', 10);

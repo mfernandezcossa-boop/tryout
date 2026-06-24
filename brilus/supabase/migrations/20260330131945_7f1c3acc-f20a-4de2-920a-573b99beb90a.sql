@@ -1,0 +1,85 @@
+
+INSERT INTO public.induction_modules (module_number, title, description, order_index, visible)
+VALUES (7, 'Ética Aplicada a Brilus', 'Principios éticos fundamentales del IBT: dignidad del alumno, neurodiversidad, asentimiento, competencia profesional y responsabilidades ante transición o abandono de casos.', 7, true);
+
+INSERT INTO public.induction_quiz_questions (module_id, question_text, option_a, option_b, option_c, option_d, correct_answer, order_index)
+VALUES
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '¿Cuál es la base sobre la cual se sostiene todo el modelo ético de Brilus?',
+   'Seguir las reglas para evitar multas legales.',
+   'Los cuatro principios fundamentales: Beneficiar a otros, integridad, respeto y competencia.',
+   'Maximizar el número de horas de terapia facturadas al mes.',
+   'Complacer a los padres en todas sus peticiones, aunque no sean clínicas.',
+   'b', 1),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '¿Qué significa el principio de "Asentimiento" en la práctica diaria de Brilus?',
+   'Que el niño debe decir "sí" verbalmente a cada instrucción.',
+   'Obtener el permiso legal firmado por los padres al inicio del tratamiento.',
+   'Estar atento a las señales (verbales y no verbales) de que el niño quiere participar y detenerse si muestra rechazo persistente.',
+   'Obligar al niño a trabajar hasta que se acostumbre a las demandas.',
+   'c', 2),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   'En el contexto de la neurodiversidad en Brilus, ¿cuál es el enfoque respecto a las conductas de "stimming" (autoestimulación)?',
+   'Deben eliminarse siempre porque no parecen "normales".',
+   'Se respetan y permiten, a menos que causen daño físico o interfieran significativamente con el aprendizaje funcional.',
+   'El IBT debe distraer al niño cada vez que haga un movimiento repetitivo.',
+   'Son conductas que solo se permiten durante los descansos.',
+   'b', 3),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '¿Qué debe hacer un IBT si comete un error grave en el registro de datos o en la implementación de un programa?',
+   'Corregir el dato en silencio para que la supervisora no lo note.',
+   'Dejar de registrar datos ese día para no ensuciar el reporte.',
+   'Actuar con integridad, admitir el error ante la supervisora y buscar cómo corregirlo.',
+   'Culpar a la familia o al mal comportamiento del niño por el error cometido.',
+   'c', 4),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   'Se considera "Abandono de Caso" cuando un terapeuta:',
+   'Pide vacaciones con dos meses de anticipación.',
+   'Deja de asistir a las sesiones sin previo aviso o renuncia de forma abrupta sin coordinación.',
+   'Solicita un cambio de caso porque el trayecto a la casa es muy largo.',
+   'Se enferma y avisa que no podrá asistir a la sesión del día.',
+   'b', 5),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '¿Cuál es el estándar de Brilus para dar por terminada la relación con un caso de manera profesional?',
+   'Avisar el mismo día que ya no regresará.',
+   'Dar un aviso mínimo de 30 días antes de dejar el caso para asegurar la transición.',
+   'Enviar un mensaje de WhatsApp a la familia el domingo por la noche.',
+   'Dejar de ir y esperar a que la oficina se dé cuenta.',
+   'b', 6),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   'Durante el periodo de transición (los 30 días de aviso), ¿cuál es la responsabilidad del IBT?',
+   'Ir a las sesiones pero ya no registrar datos ni esforzarse.',
+   'Despedirse de la familia el primer día y no volver.',
+   'Mantener la calidad del trabajo y colaborar activamente en la transferencia de información al nuevo terapeuta.',
+   'Convencer a la familia de que busquen otra agencia porque tú te vas.',
+   'c', 7),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '¿Qué significa "Asegurar la Competencia" como principio ético?',
+   'Competir con otros IBTs para ver quién es el mejor.',
+   'No improvisar; trabajar solo en lo que se ha sido entrenado y preguntar siempre que no se sepa algo.',
+   'Estudiar psicología por cuenta propia para dar diagnósticos médicos.',
+   'Aplicar técnicas que viste en YouTube aunque tu supervisora no las haya aprobado.',
+   'b', 8),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   'Si una situación en sesión no tiene una respuesta clara en el manual, ¿cómo debe actuar el IBT?',
+   'Tomar la decisión que le parezca más rápida.',
+   'Hacer lo que la familia le pida en ese momento.',
+   'Identificar que es una "situación gris" y escalar inmediatamente con la supervisora para decidir juntos.',
+   'Ignorar la situación y esperar a que pase sola.',
+   'c', 9),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 7),
+   '"La ética se demuestra cuando nadie te está viendo". En Brilus, esto se traduce principalmente en:',
+   'Llegar temprano aunque no haya nadie en la puerta.',
+   'Registrar datos reales, respetar al alumno en todo momento y seguir los protocolos de seguridad sin excepciones.',
+   'No usar el celular durante la sesión solo si hay cámaras en la casa.',
+   'Ser amable con los padres solo cuando la supervisora está presente.',
+   'b', 10);

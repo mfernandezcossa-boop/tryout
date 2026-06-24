@@ -1,0 +1,1 @@
+UPDATE team_members SET presentacion_personal = NULL WHERE id = 'ef127f7d-8d97-4e74-bc22-7bb61f8eda36';

@@ -1,0 +1,433 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
+/* Brilus Design System — All colors in HSL */
+
+@layer base {
+  :root {
+    /* Semantic UI tokens */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 12%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 12%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 12%;
+
+    --primary: 0 0% 12%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 9% 96%;
+    --secondary-foreground: 0 0% 12%;
+
+    --muted: 0 0% 97%;
+    --muted-foreground: 240 3% 47%;
+
+    --accent: 30 9% 96%;
+    --accent-foreground: 0 0% 12%;
+
+    --destructive: 14 100% 38%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 0% / 10%;
+    --input: 0 0% 0% / 10%;
+    --ring: 0 0% 82%;
+
+    --radius: 0.625rem;
+
+    /* Brand Colors — Brilus */
+    --brand-coral: 12 97% 62%;
+    --brand-blue: 214 85% 60%;
+    --brand-amber: 37 100% 56%;
+    --brand-grey: 0 0% 89%;
+    --brand-black: 0 0% 12%;
+    --brand-white: 0 0% 100%;
+
+    /* Coral variants */
+    --brand-coral-10: 14 100% 65%;
+    --brand-coral-25: 14 100% 72%;
+    --brand-coral-50: 14 100% 82%;
+
+    /* Amber variants */
+    --brand-amber-10: 37 100% 65%;
+    --brand-amber-25: 37 100% 75%;
+    --brand-amber-50: 37 100% 84%;
+
+    /* Blue variants */
+    --brand-blue-10: 214 100% 69%;
+    --brand-blue-25: 214 100% 81%;
+    --brand-blue-50: 214 100% 92%;
+
+    /* Grey variants */
+    --brand-grey-plus10: 0 0% 82%;
+    --brand-grey-minus10: 0 0% 96%;
+
+    /* Chart colors */
+    --chart-1: 12 97% 62%;
+    --chart-2: 214 85% 60%;
+    --chart-3: 214 100% 81%;
+    --chart-4: 37 100% 56%;
+    --chart-5: 37 100% 75%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 0 0% 12%;
+    --sidebar-primary: 0 0% 12%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 30 9% 96%;
+    --sidebar-accent-foreground: 0 0% 12%;
+    --sidebar-border: 0 0% 0% / 10%;
+    --sidebar-ring: 214 85% 60%;
+
+    --spacing: 0.25rem;
+  }
+
+  .dark {
+    --background: 0 0% 8%;
+    --foreground: 0 0% 97%;
+
+    --card: 0 0% 12%;
+    --card-foreground: 0 0% 97%;
+
+    --popover: 0 0% 12%;
+    --popover-foreground: 0 0% 97%;
+
+    --primary: 0 0% 93%;
+    --primary-foreground: 0 0% 12%;
+
+    --secondary: 0 0% 18%;
+    --secondary-foreground: 0 0% 97%;
+
+    --muted: 0 0% 18%;
+    --muted-foreground: 240 3% 55%;
+
+    --accent: 0 0% 18%;
+    --accent-foreground: 0 0% 97%;
+
+    --destructive: 14 100% 38%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 0 0% 100% / 10%;
+    --input: 0 0% 100% / 15%;
+    --ring: 214 85% 60%;
+
+    --sidebar-background: 0 0% 6%;
+    --sidebar-foreground: 0 0% 97%;
+    --sidebar-primary: 214 85% 60%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 0 0% 97%;
+    --sidebar-border: 0 0% 100% / 10%;
+    --sidebar-ring: 214 85% 60%;
+
+    --chart-1: 12 97% 62%;
+    --chart-2: 214 85% 60%;
+    --chart-3: 214 100% 81%;
+    --chart-4: 37 100% 56%;
+    --chart-5: 37 100% 75%;
+
+    --radius: 0.625rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: "Instrument Sans", sans-serif;
+    letter-spacing: -1px;
+  }
+}
+
+/* Rich content preview styles */
+.rich-content {
+  @apply text-foreground;
+}
+
+.rich-content h1 {
+  @apply text-4xl font-bold mb-4 mt-8 text-foreground;
+}
+
+.rich-content h2 {
+  @apply text-3xl font-bold mb-3 mt-6 text-foreground;
+}
+
+.rich-content h3 {
+  @apply text-2xl font-bold mb-2 mt-4 text-foreground;
+}
+
+.rich-content p {
+  @apply mb-4 text-foreground leading-relaxed;
+}
+
+.rich-content strong {
+  @apply font-bold;
+}
+
+.rich-content em {
+  @apply italic;
+}
+
+.rich-content u {
+  @apply underline;
+}
+
+.rich-content ul {
+  @apply list-disc ml-6 mb-4 space-y-2;
+}
+
+.rich-content ol {
+  @apply list-decimal ml-6 mb-4 space-y-2;
+}
+
+.rich-content li {
+  @apply text-foreground;
+}
+
+.rich-content blockquote {
+  @apply border-l-4 border-primary pl-4 italic my-4 text-muted-foreground;
+}
+
+.rich-content a {
+  @apply text-primary underline hover:text-primary/80 transition-colors;
+}
+
+.rich-content img {
+  @apply rounded-lg my-4 max-w-full h-auto;
+}
+
+/* TipTap Editor Visual Styles */
+.tiptap-editor h1 {
+  @apply text-4xl font-bold mb-4 mt-6 text-foreground;
+  line-height: 1.2;
+}
+
+.tiptap-editor h2 {
+  @apply text-3xl font-bold mb-3 mt-5 text-foreground;
+  line-height: 1.3;
+}
+
+.tiptap-editor h3 {
+  @apply text-2xl font-bold mb-2 mt-4 text-foreground;
+  line-height: 1.4;
+}
+
+.tiptap-editor p {
+  @apply mb-3 text-foreground leading-relaxed;
+  font-size: 1rem;
+}
+
+.tiptap-editor strong {
+  @apply font-bold text-foreground;
+}
+
+.tiptap-editor em {
+  @apply italic;
+}
+
+.tiptap-editor u {
+  @apply underline;
+}
+
+.tiptap-editor ul {
+  @apply list-disc ml-6 mb-3 space-y-1;
+}
+
+.tiptap-editor ol {
+  @apply list-decimal ml-6 mb-3 space-y-1;
+}
+
+.tiptap-editor li {
+  @apply text-foreground;
+  padding-left: 0.5rem;
+}
+
+.tiptap-editor blockquote {
+  @apply border-l-4 border-primary pl-4 italic my-3 text-muted-foreground;
+}
+
+.tiptap-editor a {
+  @apply text-primary underline hover:text-primary/80 transition-colors;
+}
+
+.tiptap-editor img {
+  @apply rounded-lg my-4 max-w-full h-auto;
+}
+
+.tiptap-editor .ProseMirror-selectednode {
+  @apply outline outline-2 outline-primary outline-offset-2;
+}
+
+.tiptap-editor p.is-editor-empty:first-child::before {
+  @apply text-muted-foreground;
+  content: attr(data-placeholder);
+  float: left;
+  height: 0;
+  pointer-events: none;
+}
+
+/* TipTap Editor Image Resize Styles */
+.ProseMirror img {
+  max-width: 100%;
+  height: auto;
+  cursor: default;
+}
+
+.ProseMirror img.ProseMirror-selectednode {
+  outline: 3px solid hsl(var(--primary));
+  cursor: nwse-resize;
+}
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+.ProseMirror p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: hsl(var(--muted-foreground));
+  pointer-events: none;
+  height: 0;
+}
+
+/* Brilus Spacing Utilities */
+@layer utilities {
+  .section-py {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  .section-py-lg {
+    @apply py-16 md:py-20 lg:py-24;
+  }
+
+  .section-px {
+    /* Brilus DS: minimum external padding 48px on all viewports */
+    @apply px-4 md:px-12 lg:px-16 xl:px-28;
+  }
+
+  .section-container {
+    @apply max-w-[1200px] mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  .section-header {
+    @apply text-center space-y-4 mb-10 md:mb-12;
+  }
+}
+
+/* Brilus Typography Utilities */
+@layer utilities {
+  .text-hero {
+    font-size: 72px;
+    line-height: 72px;
+    font-weight: 700;
+    letter-spacing: -1px;
+  }
+
+  .text-h1 {
+    font-size: 48px;
+    line-height: 56px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+
+  .text-h2 {
+    font-size: 40px;
+    line-height: 48px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+
+  .text-h3 {
+    font-size: 32px;
+    line-height: 36px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+
+  .text-h4 {
+    font-size: 24px;
+    line-height: 32px;
+    font-weight: 500;
+    letter-spacing: -1px;
+  }
+
+  .text-h5 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 600;
+    letter-spacing: -1px;
+  }
+
+  .text-body-lg {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  .text-body-md {
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  .text-body-sm {
+    font-size: 14px;
+    line-height: 16px;
+    font-weight: 400;
+    letter-spacing: -1px;
+  }
+
+  /* Responsive Typography */
+  @media (max-width: 768px) {
+    .text-hero {
+      font-size: 40px;
+      line-height: 44px;
+    }
+
+    .text-h1 {
+      font-size: 32px;
+      line-height: 36px;
+    }
+
+    .text-h2 {
+      font-size: 28px;
+      line-height: 32px;
+    }
+
+    .text-h3 {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+
+  /* Shadow Tokens */
+  .shadow-brilus-1 {
+    box-shadow: -4px 5px 12px rgba(0, 0, 0, 0.05);
+  }
+
+  .shadow-brilus-2 {
+    box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.09);
+  }
+
+  .shadow-brilus-3 {
+    box-shadow: -2px 1px 16px rgba(0, 0, 0, 0.03);
+  }
+}

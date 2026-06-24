@@ -1,0 +1,85 @@
+
+INSERT INTO public.induction_modules (module_number, title, description, order_index, visible)
+VALUES (6, 'Fases Terapéuticas y Recorrido del Cliente', 'Etapas sistemáticas del tratamiento en Brilus: emparejamiento, línea base, intervención activa y graduación. Toma de decisiones basada en datos y respeto al ritmo individual.', 6, true);
+
+INSERT INTO public.induction_quiz_questions (module_id, question_text, option_a, option_b, option_c, option_d, correct_answer, order_index)
+VALUES
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Por qué el modelo de Brilus utiliza un enfoque por fases en lugar de empezar a enseñar inmediatamente?',
+   'Para que el seguro médico tenga más tiempo de procesar los pagos.',
+   'Porque cada fase construye sobre la anterior, asegurando que el niño quiera estar con el terapeuta antes de introducir demandas.',
+   'Porque es un requisito legal en México para todas las terapias infantiles.',
+   'Para darle tiempo al IBT de aprenderse el nombre de todos los familiares.',
+   'b', 1),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Cuál es el objetivo principal de la fase de "Emparejamiento" (Pairing)?',
+   'Evaluar cuántas palabras puede decir el niño bajo presión.',
+   'Establecer una relación donde el IBT se asocie con cosas divertidas y valiosas para el niño.',
+   'Enseñar al niño a seguir instrucciones de "sentarse" y "quedarse quieto".',
+   'Llenar los formatos de evaluación estandarizados como el VB-MAPP.',
+   'b', 2),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   'Durante la fase de "Línea Base" (Baseline), ¿cuál es la instrucción principal para el IBT?',
+   'Corregir todos los errores que cometa el niño para que aprenda rápido.',
+   'Ayudar al niño dándole pistas (prompts) en cada respuesta.',
+   'Recolectar datos sobre lo que el niño ya sabe hacer por sí solo, SIN enseñar ni corregir.',
+   'Premiar al niño solo cuando responda correctamente a preguntas nuevas.',
+   'c', 3),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Quién es la persona responsable de decidir cuándo un alumno está listo para avanzar de una fase a otra?',
+   'El IBT, basándose en cómo se siente en la sesión.',
+   'La familia, dependiendo de la prisa que tengan por ver resultados.',
+   'La supervisora (BCBA/BCaBA), tras analizar los datos recolectados.',
+   'El alumno, cuando pide empezar a trabajar con libros.',
+   'c', 4),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   'En la fase de "Intervención Activa", ¿cuál es el rol fundamental del IBT?',
+   'Diseñar nuevos programas de enseñanza si el niño se aburre.',
+   'Implementar los programas diseñados, recolectar datos de cada ensayo y reportar avances o retos.',
+   'Decidir qué objetivos se van a trabajar cada semana de forma independiente.',
+   'Actuar como un observador pasivo mientras los padres enseñan al niño.',
+   'b', 5),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Qué debe hacer un IBT si nota que un alumno está perdiendo habilidades que ya había dominado (regresión)?',
+   'Frustrarse y pensar que su trabajo no está funcionando.',
+   'Ocultar los datos para que la supervisora no piense que es un fracaso.',
+   'Reportarlo de inmediato; entender que la regresión es normal y parte del proceso de ajuste.',
+   'Aumentar la intensidad y el castigo para que el niño recupere la habilidad.',
+   'c', 6),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Cuál es el objetivo final de la fase de "Graduación" en Brilus?',
+   'Que el niño nunca más necesite apoyo de ningún tipo.',
+   'Que la familia sea capaz de manejar el progreso del niño de forma independiente y se reduzca la intensidad del servicio.',
+   'Celebrar una fiesta grande con todo el equipo administrativo.',
+   'Convencer a la familia de que sigan pagando la terapia por muchos años más.',
+   'b', 7),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Qué significa "respetar el ritmo del niño" según las Reglas de Oro del recorrido terapéutico?',
+   'Dejar que el niño haga lo que quiera durante toda la sesión sin metas.',
+   'No forzar contacto visual, afecto físico o "normalidad" si el niño no está listo o cómodo.',
+   'Esperar a que el niño tenga ganas de trabajar para empezar la sesión.',
+   'No registrar datos los días que el niño está de mal humor.',
+   'b', 8),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '¿Cuánto dura típicamente la fase de Emparejamiento?',
+   'Solo los primeros 5 minutos de la primera sesión.',
+   'Entre 1 y 2 semanas, dependiendo de cada caso.',
+   'Exactamente un mes, sin excepciones.',
+   'Toda la vida del tratamiento.',
+   'b', 9),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 6),
+   '"Si te saltas una fase, las siguientes no funcionan tan bien". ¿Por qué es cierta esta afirmación?',
+   'Porque el sistema Hi Rasmus se bloquea si no sigues el orden.',
+   'Porque sin la base de la relación y los datos iniciales, la enseñanza se vuelve aversiva o ineficaz.',
+   'Porque los padres se confunden si no ven un cambio de nombre en las fases.',
+   'Solo es cierta para niños muy pequeños, no para adolescentes.',
+   'b', 10);

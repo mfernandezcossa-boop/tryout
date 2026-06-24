@@ -1,0 +1,33 @@
+{
+  "redirects": [
+    {
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.somosbrilus.com"
+        }
+      ],
+      "destination": "https://somosbrilus.com/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/blog",
+      "destination": "/nuestros-blogs",
+      "permanent": true
+    },
+    {
+      "source": "/blog/:slug",
+      "destination": "/nuestros-blogs/:slug",
+      "permanent": true
+    },
+    {
+      "source": "/diagnostico-autismo-cdmx",
+      "destination": "/autismo-cdmx",
+      "permanent": true
+    }
+  ],
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}

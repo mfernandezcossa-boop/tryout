@@ -1,0 +1,85 @@
+
+INSERT INTO public.induction_modules (module_number, title, description, order_index, visible)
+VALUES (5, 'Supervisión por Telehealth', 'Modelo de supervisión remota, distinción entre supervisión directa e indirecta, protocolos técnicos y responsabilidades del IBT en sesiones sin presencia física de la supervisora.', 5, true);
+
+INSERT INTO public.induction_quiz_questions (module_id, question_text, option_a, option_b, option_c, option_d, correct_answer, order_index)
+VALUES
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Qué es la supervisión directa por Telehealth en el modelo de Brilus?',
+   'Una videollamada para hablar de temas administrativos sin el cliente presente.',
+   'Cuando la supervisora observa la sesión en tiempo real por video mientras el IBT trabaja con el cliente.',
+   'Una grabación de la sesión que la supervisora revisa días después.',
+   'Cuando el IBT le cuenta a la supervisora por teléfono cómo le fue en el día.',
+   'b', 1),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Cuál es el objetivo principal de que la supervisora te observe remotamente?',
+   'Evaluar tu desempeño para decidir tu aumento de sueldo.',
+   'Vigilar que llegues puntual a la casa del cliente.',
+   'Ajustar la intervención en vivo y asegurar que los programas se implementen correctamente.',
+   'Hacerle compañía al IBT durante las sesiones largas.',
+   'c', 2),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   'En una sesión de supervisión remota, ¿quién está físicamente con el cliente en el hogar?',
+   'Nadie, el cliente está solo frente a la computadora.',
+   'La supervisora y el IBT.',
+   'El IBT y un adulto capaz (padre/tutor).',
+   'Solo el padre del alumno.',
+   'c', 3),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Qué NO significa el Telehealth en Brilus según el módulo?',
+   'Que la supervisora te observa a través de HiRasmus.',
+   'Que la supervisora revisa tus datos y notas de forma remota.',
+   'Que estás solo y no tienes a quién recurrir durante la sesión.',
+   'Que recibes retroalimentación en tiempo real a través de audífonos o al final de la sesión.',
+   'c', 4),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   'Antes de iniciar una sesión donde la supervisora te observará por video, ¿qué checklist técnico debes cumplir?',
+   'Tener el dispositivo con cámara listo, soporte estable y audífonos (si aplica).',
+   'Asegurarte de que no haya nadie más en la casa para no distraerte.',
+   'Apagar el Wi-Fi para que no se interrumpa la sesión.',
+   'Poner música de fondo para que la supervisora no escuche el ruido ambiente.',
+   'a', 5),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Qué debe hacer el IBT si ocurre un problema técnico persistente durante la supervisión?',
+   'Cancelar la sesión inmediatamente.',
+   'Seguir la sesión siguiendo el plan y escalar el problema técnico a la supervisora.',
+   'Dejar de registrar datos porque "no hay sistema".',
+   'Pedirle al padre del niño que arregle el problema de internet.',
+   'b', 6),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   'Si estás recibiendo supervisión remota y el cliente muestra un comportamiento que no puedes manejar solo, ¿cuál es el protocolo?',
+   'Apagar la cámara para que la supervisora no vea la crisis.',
+   'Intentar una técnica nueva que no has practicado para resolverlo.',
+   'Llamar a la supervisora inmediatamente para recibir guía y, si es necesario, pedir ayuda al padre presente.',
+   'Salir de la habitación hasta que el niño se calme solo.',
+   'c', 7),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Qué información adicional debe incluir la documentación de una sesión con Telehealth?',
+   'El nombre de la marca del iPad utilizado.',
+   'Quién estuvo presente (incluyendo si la supervisora observó) y cualquier problema técnico que afectó la sesión.',
+   'Solo los datos del alumno, omitiendo lo que pasó con la tecnología.',
+   'Una captura de pantalla de la videollamada.',
+   'b', 8),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '¿Cuál es la diferencia entre "Supervisión Remota" y "Servicios Directos" por Telehealth?',
+   'No hay diferencia, son lo mismo.',
+   'En la Supervisión Remota el IBT está con el cliente; en Servicios Directos, el IBT está remoto y guía al padre o trabaja directamente por video con el niño.',
+   'En la Supervisión Remota el IBT está en su casa y en Servicios Directos está en la oficina.',
+   'Los Servicios Directos solo los puede dar el BCBA.',
+   'b', 9),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 5),
+   '"Tu supervisora sigue siendo tu supervisora, esté donde esté". ¿Qué implica esto para el IBT?',
+   'Que tiene menos responsabilidad porque no la ven en persona.',
+   'Que la calidad del trabajo, la documentación y el apego al plan deben ser los mismos que en una sesión presencial.',
+   'Que puede cambiar los programas si cree que la supervisora no se dará cuenta por video.',
+   'Que la supervisora solo es responsable de lo que ve a través de la cámara.',
+   'b', 10);

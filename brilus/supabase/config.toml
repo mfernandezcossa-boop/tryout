@@ -1,0 +1,19 @@
+project_id = "dozlintkzvgtfjlflkyp"
+
+[functions.submit-form]
+verify_jwt = false
+
+[functions.list-users]
+verify_jwt = true
+
+[functions.delete-user]
+verify_jwt = true
+
+[functions.update-user-role]
+verify_jwt = true
+
+[functions.create-therapist-account]
+verify_jwt = false
+
+[functions.register-therapist]
+verify_jwt = false

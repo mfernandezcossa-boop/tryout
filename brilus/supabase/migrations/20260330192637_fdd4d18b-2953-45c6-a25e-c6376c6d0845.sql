@@ -1,0 +1,1 @@
+ALTER TABLE public.induction_modules ADD COLUMN podcast_url text;

@@ -1,0 +1,1 @@
+INSERT INTO public.users_profiles (user_id, display_name) VALUES ('841a7121-ec55-487f-937d-eb644abda5d7', 'Alexia Sanchez');

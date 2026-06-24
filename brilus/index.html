@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- Preconnect hints for performance -->
+    <link rel="preconnect" href="https://dozlintkzvgtfjlflkyp.supabase.co" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    
+    <!-- Open Graph tags estáticos para crawlers -->
+    <meta property="og:image" content="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/seo/ogimage.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="es_MX" />
+    
+    <!-- Favicon en múltiples formatos -->
+    <link rel="icon" type="image/png" sizes="32x32" href="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/seo/faviconbrilus.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/seo/faviconbrilus.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/seo/faviconbrilus.png">
+    <link rel="shortcut icon" href="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/seo/faviconbrilus.png">
+</head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <!-- Deferred tracking scripts - loaded after page is interactive -->
+    <script>
+      window.addEventListener('load', function() {
+        // Google Analytics - deferred loading
+        var gtagScript = document.createElement('script');
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-P1MBP04V8P';
+        gtagScript.async = true;
+        document.head.appendChild(gtagScript);
+        
+        gtagScript.onload = function() {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-P1MBP04V8P', {'send_page_view': false});
+        };
+
+        // Meta Pixel - deferred loading
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window, document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', '1925706251492495');
+        fbq('track', 'PageView');
+
+        // Contentsquare - deferred loading with proper initialization
+        var csScript = document.createElement('script');
+        csScript.src = 'https://t.contentsquare.net/uxa/a527e62d46011.js';
+        csScript.async = true;
+        document.head.appendChild(csScript);
+        
+        // Initialize _uxa array and track initial pageview
+        window._uxa = window._uxa || [];
+        window._uxa.push(["trackPageview", window.location.pathname + window.location.search]);
+      });
+    </script>
+  </body>
+</html>

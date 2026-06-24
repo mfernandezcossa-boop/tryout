@@ -1,0 +1,1 @@
+UPDATE team_members SET credenciales = ARRAY['Branding & Estrategia de Marca', 'Comunicación Empática', 'Marketing con Propósito'] WHERE id = '355f1988-af07-48a4-93f2-b55a7fa4bc08';

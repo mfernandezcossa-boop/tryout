@@ -1,0 +1,85 @@
+
+INSERT INTO public.induction_modules (module_number, title, description, order_index, visible)
+VALUES (8, 'Seguridad y Manejo de Crisis en Brilus', 'Protocolos de seguridad, política de no contacto físico, manejo de situaciones de riesgo y regulación emocional del IBT durante una crisis.', 8, true);
+
+INSERT INTO public.induction_quiz_questions (module_id, question_text, option_a, option_b, option_c, option_d, correct_answer, order_index)
+VALUES
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Cuál es la posición oficial de Brilus respecto al manejo físico o procedimientos restrictivos?',
+   'Se permiten solo si el niño está muy agitado y no hay otra opción.',
+   'Brilus no utiliza ninguna forma de manejo físico, sujeción o bloqueo bajo ninguna circunstancia.',
+   'Solo los supervisores BCBA están autorizados para cargar o restringir al alumno.',
+   'Se permite el bloqueo físico siempre que no se use fuerza excesiva.',
+   'b', 1),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Cuál es el primer principio fundamental de seguridad en Brilus?',
+   'Completar todos los registros en Hi Rasmus antes de que termine la sesión.',
+   'La seguridad siempre viene primero, incluso antes que cualquier meta terapéutica.',
+   'Lograr que el alumno cumpla con todas las instrucciones dadas.',
+   'Mantener a los padres fuera de la habitación durante una crisis.',
+   'b', 2),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   'Si un alumno comienza a lanzar objetos pesados o a tener una crisis conductual intensa, ¿cuál es el paso inmediato que debe seguir el IBT?',
+   'Intentar abrazar al niño para calmarlo mediante contención física.',
+   'Gritar para pedir silencio y que el niño se detenga por el susto.',
+   'Asegurar el entorno (quitar objetos peligrosos), dar espacio y escalar a la supervisora.',
+   'Salir de la casa y dar por terminada la sesión sin avisar a nadie.',
+   'c', 3),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Qué debe hacer un IBT si nota señales de desregulación emocional propia (corazón acelerado, bloqueo, impulso de actuar físicamente)?',
+   'Ignorarlo y seguir trabajando para demostrar profesionalismo.',
+   'Tomar una pausa activa (respiraciones lentas), llamar a la familia para que intervenga y pedir apoyo a la supervisora.',
+   'Terminar la sesión inmediatamente y culpar al niño por su estado emocional.',
+   'Tomar una bebida energética para recuperar fuerzas y continuar.',
+   'b', 4),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Qué significa "Escalar de inmediato" en el contexto de una crisis?',
+   'Llamar a la supervisora solo si los padres se dan cuenta del problema.',
+   'Esperar a que termine la sesión para escribir lo que pasó en la nota SOAP.',
+   'Notificar por los canales de emergencia a la supervisora en el momento exacto en que la situación supera el protocolo normal.',
+   'Subir a un lugar alto para que el niño no te alcance.',
+   'c', 5),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Cuál es el propósito del "Debrief" (reunión de análisis) después de una crisis?',
+   'Evaluar si el IBT debe ser despedido por permitir que ocurriera la crisis.',
+   'Buscar culpables entre los miembros de la familia.',
+   'Analizar la situación como una oportunidad de aprendizaje para ajustar el plan y apoyar emocionalmente al equipo.',
+   'Llenar papelería burocrática obligatoria por ley.',
+   'c', 6),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿A quién debe contactar el IBT si presencia una situación de negligencia o abuso evidente en el hogar del cliente?',
+   'A nadie, porque debe respetar la privacidad de la familia.',
+   'Directamente a la policía sin avisar a Brilus.',
+   'Escalar inmediatamente a su supervisora y al equipo directivo de Brilus siguiendo el protocolo de denuncia.',
+   'Confrontar a los padres en ese momento y reclamarles.',
+   'c', 7),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '"Sin manejo físico — nunca". ¿Qué implica esta regla si el niño intenta salir de la casa hacia la calle?',
+   'Dejar que se vaya porque no puedes tocarlo.',
+   'Interponerse físicamente usando tu cuerpo como barrera (sin sujetarlo) y llamar a gritos a los padres presentes en la casa para que intervengan.',
+   'Sujetarlo fuertemente de los brazos hasta que se calme.',
+   'Correr detrás de él y esperar a que se canse.',
+   'b', 8),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '¿Por qué es fundamental documentar con exactitud lo ocurrido en una crisis?',
+   'Para que la supervisora tenga algo que leer en su tiempo libre.',
+   'Para proteger legalmente al IBT y a Brilus, y para tener datos reales que permitan prevenir futuras crisis.',
+   'Para que los padres se sientan culpables por el comportamiento de su hijo.',
+   'No es fundamental; lo que importa es que ya pasó el peligro.',
+   'b', 9),
+
+  ((SELECT id FROM public.induction_modules WHERE module_number = 8),
+   '"Si tú no estás seguro/a, no puedes enseñar". ¿Qué refleja esta frase sobre el modelo Brilus?',
+   'Que el IBT es más importante que el alumno.',
+   'Que el bienestar del terapeuta es la base necesaria para una intervención efectiva y ética.',
+   'Que si tienes miedo, deberías renunciar.',
+   'Que la seguridad es responsabilidad exclusiva de la empresa, no del terapeuta.',
+   'b', 10);

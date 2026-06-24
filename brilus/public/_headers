@@ -1,0 +1,17 @@
+# Headers for admin routes
+/admin/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/auth
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+# Knowledge base - private pages
+/familias
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+/familias/*
+  X-Robots-Tag: noindex, nofollow, noarchive
+
+# Job postings - private pages
+/jobs/*
+  X-Robots-Tag: noindex, nofollow, noarchive
