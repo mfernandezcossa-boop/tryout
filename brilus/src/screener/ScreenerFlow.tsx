@@ -95,6 +95,9 @@ const ScreenerFlow = ({ config, skipIntro = false, bypassQuiz = false, privateMo
   const [leadId, setLeadId] = useState<string | null>(null);
   const [rejection, setRejection] = useState<"too_young" | "too_old" | null>(null);
   const [submitting, setSubmitting] = useState(false);
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-[76px] md:pt-[92px]">
       <div className="mx-auto w-full max-w-5xl px-4 py-6 md:py-10">
