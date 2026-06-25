@@ -1,4 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -57,7 +58,7 @@ const leadSchema = z.object({
   whatsapp: z.string().trim().min(7, "Número inválido").max(40),
   child_name: z.string().trim().min(1, "Requerido").max(100),
   child_birthdate: z.string().regex(/^\d{4}-\d{2}-\d{2}$/, "Fecha inválida"),
-  postal_code: z.string().trim().max(20).optional().or(z.literal("")),
+  postal_code: z.string().trim().min(1, "Requerido").max(20),
   consent: z.boolean().refine((v) => v === true, "Debes aceptar el aviso de privacidad"),
 });
 
@@ -78,14 +79,22 @@ interface Props {
    * Brilus comparte manualmente fuera del flujo público.
    */
   privateMode?: boolean;
+  /**
+   * Si se provee, al enviar exitosamente el formulario (LeadFormStep) se invoca
+   * este callback con el leadId en lugar de avanzar internamente al siguiente paso.
+   * Útil para redirigir a una URL dedicada (start-mchat / start-cast) para tracking.
+   */
+  onLeadSubmitted?: (leadId: string) => void;
 }
 
-const ScreenerFlow = ({ config, skipIntro = false, bypassQuiz = false, privateMode = false }: Props) => {
+const ScreenerFlow = ({ config, skipIntro = false, bypassQuiz = false, privateMode = false, onLeadSubmitted }: Props) => {
   const [step, setStep] = useState<Step>(privateMode ? "mini_form" : skipIntro ? "form" : "intro");
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [step]);
   const [leadId, setLeadId] = useState<string | null>(null);
   const [rejection, setRejection] = useState<"too_young" | "too_old" | null>(null);
   const [submitting, setSubmitting] = useState(false);
-
   return (
     <div className="min-h-screen bg-[#F7F7F7] pt-[76px] md:pt-[92px]">
       <div className="mx-auto w-full max-w-5xl px-4 py-6 md:py-10">
@@ -112,6 +121,10 @@ const ScreenerFlow = ({ config, skipIntro = false, bypassQuiz = false, privateMo
             setSubmitting={setSubmitting}
             onSuccess={(id) => {
               setLeadId(id);
+              if (onLeadSubmitted) {
+                onLeadSubmitted(id);
+                return;
+              }
               setStep(bypassQuiz ? "provisional_closing" : "quiz");
             }}
             onRejected={(r) => {
@@ -173,44 +186,6 @@ const ProvisionalClosingStep = ({ leadId }: { leadId: string | null }) => {
         Hemos recibido tus datos correctamente. En breve nos pondremos en contacto contigo por WhatsApp o correo
         electrónico para enviarte el acceso al cuestionario M-CHAT-R de forma privada.
       </p>
-
-      {!saved && leadId && (
-        <form onSubmit={handleSubmit} className="mx-auto mt-6 max-w-md text-left">
-          <Label className="tracking-[-0.05em] text-[#1F1F1F]">Número de teléfono</Label>
-          <p className="mt-1 text-xs tracking-[-0.05em] text-[#717182]">
-            Si quieres, déjanos un número para contactarte más rápido por WhatsApp.
-          </p>
-          <div className="mt-2 flex gap-2">
-            <select
-              value={countryCode}
-              onChange={(e) => setCountryCode(e.target.value)}
-              className="h-10 w-[92px] rounded-md border border-input bg-background px-3 text-sm text-[#1F1F1F] focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-            >
-              {COUNTRY_CODES.map((c) => (
-                <option key={c.code} value={c.code}>
-                  {c.code}
-                </option>
-              ))}
-            </select>
-            <Input
-              type="tel"
-              placeholder="55 1234 5678"
-              value={phone}
-              onChange={(e) => setPhone(e.target.value.replace(/\D/g, ""))}
-              className="flex-1"
-            />
-          </div>
-          <Button type="submit" variant="blue" size="lg" disabled={submitting || !phone.trim()} className="mt-4 w-full">
-            {submitting ? <Loader2 className="h-4 w-4 animate-spin" /> : "Guardar número"}
-          </Button>
-        </form>
-      )}
-
-      {saved && (
-        <p className="mt-6 text-sm tracking-[-0.05em] text-brand-blue">
-          ¡Listo! Te contactaremos al número que nos compartiste.
-        </p>
-      )}
 
       <Button asChild variant="outline" size="lg" className="mt-6 w-full md:w-auto">
         <a href="/">Volver al inicio</a>
@@ -314,10 +289,6 @@ const LeadFormStep = ({
       setErrors(errs);
       return;
     }
-    if (config.id === "cast" && !parsed.data.postal_code?.trim()) {
-      setErrors({ postal_code: "Requerido" });
-      return;
-    }
     setSubmitting(true);
     try {
       const { data: resp, error } = await supabase.functions.invoke("submit-screener", {
@@ -400,7 +371,7 @@ const LeadFormStep = ({
         <Field label="Fecha de nacimiento" error={errors.child_birthdate}>
           <Input type="date" value={data.child_birthdate} onChange={(e) => upd("child_birthdate", e.target.value)} />
         </Field>
-        <Field label={config.id === "cast" ? "Código postal" : "Código postal (opcional)"} error={errors.postal_code}>
+        <Field label="Código postal" error={errors.postal_code}>
           <Input value={data.postal_code} onChange={(e) => upd("postal_code", e.target.value)} />
         </Field>
       </div>
@@ -594,7 +565,7 @@ const RejectedStep = ({ config, reason }: { config: ScreenerConfig; reason: "too
 /* ============================================================
  * Step 3 — Quiz
  * ============================================================ */
-const QuizStep = ({
+export const QuizStep = ({
   config,
   leadId,
   onComplete,
@@ -824,7 +795,7 @@ const QuizStep = ({
 /* ============================================================
  * Step 4 — Closing (same for all users)
  * ============================================================ */
-const ClosingStep = ({ config }: { config: ScreenerConfig }) => (
+export const ClosingStep = ({ config }: { config: ScreenerConfig }) => (
   <div className="rounded-[14px] border border-[rgba(0,0,0,0.1)] bg-white p-6 md:p-10 text-center">
     <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-blue/10">
       <CheckCircle2 className="h-7 w-7 text-brand-blue" />
@@ -839,7 +810,6 @@ const ClosingStep = ({ config }: { config: ScreenerConfig }) => (
         <a href="/">Volver al inicio</a>
       </Button>
       {config.closingPage.resourceLinks
-        .filter((l) => l.label !== "Guías para familias")
         .map((l) => (
           <Button key={l.url} asChild variant="outline" className="w-full md:w-auto">
             <a href={l.url}>{l.label}</a>

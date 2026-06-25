@@ -37,6 +37,8 @@ import InCenterPage from "./pages/InCenterPage";
 import InSchoolPage from "./pages/InSchoolPage";
 import ScreeningMchat from "./pages/ScreeningMchat";
 import ScreeningCast from "./pages/ScreeningCast";
+import StartScreeningMchat from "./pages/StartScreeningMchat";
+import StartScreeningCast from "./pages/StartScreeningCast";
 import TestMchat from "./pages/TestMchat";
 import TestCast from "./pages/TestCast";
 import ScreeningMchatPrivado from "./pages/ScreeningMchatPrivado";
@@ -83,7 +85,9 @@ const App = () => (
             <Route path="/in-center" element={<InCenterPage />} />
             <Route path="/in-school" element={<InSchoolPage />} />
             <Route path="/screening-mchat" element={<ScreeningMchat />} />
+            <Route path="/screening-mchat/start-mchat" element={<StartScreeningMchat />} />
             <Route path="/screening-cast" element={<ScreeningCast />} />
+            <Route path="/screening-cast/start-cast" element={<StartScreeningCast />} />
             <Route path="/test-mchat" element={<TestMchat />} />
             <Route path="/test-cast" element={<TestCast />} />
             <Route path="/mchat-acceso-privado" element={<ScreeningMchatPrivado />} />

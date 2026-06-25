@@ -6,7 +6,7 @@ import { mchatConfig } from "@/screener/configs/mchatConfig";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScreeningOptions } from "@/components/diagnostico/ScreeningSelector";
 import { diagnosticoFaqs } from "@/content/diagnosticoFaqs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AlertCircle, ArrowRight, ArrowUpRight, Check } from "lucide-react";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { Button } from "@/components/ui/button";
@@ -115,7 +115,9 @@ const howFaqs = [
   },
 ];
 
-const ScreeningMchat = () => (
+const ScreeningMchat = () => {
+  const navigate = useNavigate();
+  return (
   <>
     <SEOHead
       title="Cuestionario M-CHAT-R | Detección temprana de autismo | Brilus"
@@ -322,7 +324,14 @@ const ScreeningMchat = () => (
 
     {/* 7. MOTOR DEL SCREENER (no modificar) */}
     <section id={SCREENER_ANCHOR} className="scroll-mt-16">
-      <ScreenerFlow config={mchatConfig} skipIntro bypassQuiz />
+      <ScreenerFlow
+        config={mchatConfig}
+        skipIntro
+        bypassQuiz
+        onLeadSubmitted={(leadId) =>
+          navigate("/screening-mchat/start-mchat", { state: { leadId, screener_id: mchatConfig.id } })
+        }
+      />
     </section>
 
     <main className="bg-background">
@@ -350,6 +359,7 @@ const ScreeningMchat = () => (
 
     <Footer />
   </>
-);
+  );
+};
 
 export default ScreeningMchat;

@@ -6,7 +6,7 @@ import { castConfig } from "@/screener/configs/castConfig";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { ScreeningOptions } from "@/components/diagnostico/ScreeningSelector";
 import { diagnosticoFaqs } from "@/content/diagnosticoFaqs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { AlertCircle, ArrowRight, ArrowUpRight } from "lucide-react";
 import TestimonialsSection from "@/components/TestimonialsSection";
@@ -100,6 +100,7 @@ const howFaqs = [
 
 const ScreeningCast = () => {
   const [activeAfterCard, setActiveAfterCard] = useState(0);
+  const navigate = useNavigate();
 
   return (
     <>
@@ -324,7 +325,13 @@ const ScreeningCast = () => {
 
       {/* 7. MOTOR DEL SCREENER (no modificar) */}
       <section id={SCREENER_ANCHOR} className="scroll-mt-16">
-        <ScreenerFlow config={castConfig} skipIntro />
+       <ScreenerFlow
+         config={castConfig}
+         skipIntro
+         onLeadSubmitted={(leadId) =>
+           navigate("/screening-cast/start-cast", { state: { leadId } })
+         }
+       />
       </section>
 
       <main className="bg-background">
