@@ -31,10 +31,10 @@ const HomeServicesSection: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="mb-10 md:mb-12 max-w-3xl">
           <h2 className="text-h2 font-semibold text-foreground tracking-tight">
-            Tres entornos, un mismo plan clínico
+            Terapia ABA en tres entornos, un mismo plan clínico
           </h2>
           <p className="text-body-md text-foreground/70 mt-3">
-            Acompañamos a tu hijo donde más lo necesita: en casa, en el centro o en la escuela.
+            Acompañamos a tu hijo con autismo donde más lo necesita: en casa, en el centro o en la escuela en Ciudad de México.
           </p>
         </div>
 
@@ -52,7 +52,7 @@ const HomeServicesSection: React.FC = () => {
               >
                 <img
                   src={c.image}
-                  alt={c.title}
+                  alt={`${c.title} para niños con autismo en Ciudad de México`}
                   className="absolute inset-0 w-full h-full object-cover"
                   loading="lazy"
                 />
@@ -96,7 +96,7 @@ const HomeServicesSection: React.FC = () => {
             >
               <img
                 src={c.image}
-                alt={c.title}
+                alt={`${c.title} para niños con autismo en Ciudad de México`}
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
