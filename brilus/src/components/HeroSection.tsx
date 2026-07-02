@@ -22,7 +22,7 @@ const HeroSection: React.FC = () => {
       <div className="relative z-10 max-w-[960px] text-center space-y-8 mx-auto">
         <ScrollReveal delay={0.15}>
           <h1 className="text-hero text-white pt-[76px]">
-            Tu hijo puede llegar más lejos de lo que imaginás
+            Tu hijo con autismo puede llegar más lejos de lo que imaginás
           </h1>
           <h2 className="text-h3 text-white/80 mt-3 font-normal">
             Terapia ABA para niños con autismo en Ciudad de México
