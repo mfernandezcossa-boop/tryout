@@ -22,12 +22,15 @@ const HeroSection: React.FC = () => {
       <div className="relative z-10 max-w-[960px] text-center space-y-8 mx-auto">
         <ScrollReveal delay={0.15}>
           <h1 className="text-hero text-white pt-[76px]">
-            Terapias ABA para niños con autismo en CDMX
+            Tu hijo puede llegar más lejos de lo que imaginás
           </h1>
+          <h2 className="text-h3 text-white/80 mt-3 font-normal">
+            Terapia ABA para niños con autismo en Ciudad de México
+          </h2>
         </ScrollReveal>
         <ScrollReveal delay={0.35}>
           <p className="text-body-lg text-white/90">
-            Con nuestro método integral, tu familia obtiene terapias personalizadas y un acompañamiento continuo que asegura avances sostenidos y mayor tranquilidad en casa.
+            En Brilus acompañamos a niños y familias con autismo y neurodesarrollo con terapias, diagnóstico y un equipo que no los suelta.
           </p>
         </ScrollReveal>
         <ScrollReveal delay={0.5} variant="scaleUp">

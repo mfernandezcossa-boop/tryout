@@ -120,8 +120,8 @@ const Index: React.FC = () => {
   return (
     <>
       <SEOHead
-        title="Brilus – Terapias ABA para niños con autismo en CDMX"
-        description="Terapias ABA con supervisión BCBA en Ciudad de México. Intervención personalizada, acompañamiento familiar y resultados sostenidos. Agenda tu evaluación gratuita hoy."
+        title="Terapia ABA para Autismo en Ciudad de México | Brilus"
+        description="Terapia ABA para niños con autismo en Ciudad de México. Sesiones en casa, en el centro y en la escuela. Supervisión BCBA certificada. Agenda tu evaluación gratuita."
         canonical="/"
         structuredData={structuredData}
       />
