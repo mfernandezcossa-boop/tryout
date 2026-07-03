@@ -1,7 +1,9 @@
 import React, { useEffect, useRef, useState } from "react";
-import { SERVICE_CARDS } from "@/content/serviceCards";
+import { SERVICE_CARDS, SERVICE_FLAT_CARDS } from "@/content/serviceCards";
 
-const cards = [SERVICE_CARDS.casa, SERVICE_CARDS.centro, SERVICE_CARDS.escuela];
+const linkCards = [SERVICE_CARDS.casa, SERVICE_CARDS.centro, SERVICE_CARDS.escuela];
+const flatCards = [SERVICE_FLAT_CARDS.padres, SERVICE_FLAT_CARDS.acompanamiento];
+const cards = [...linkCards, ...flatCards];
 
 const HomeServicesSection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -44,31 +46,48 @@ const HomeServicesSection: React.FC = () => {
             ref={scrollRef}
             className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 px-4 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
           >
-            {cards.map((c, i) => (
-              <a
-                key={i}
-                href={c.href}
-                className="group relative block rounded-2xl overflow-hidden aspect-[4/5] w-full shrink-0 snap-center basis-full"
-              >
-                <img
-                  src={c.image}
-                  alt={`${c.title} para niños con autismo en Ciudad de México`}
-                  className="absolute inset-0 w-full h-full object-cover"
-                  loading="lazy"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-white/90 text-foreground text-body-sm font-medium uppercase tracking-tight">
-                  {c.badge}
-                </span>
-                <div className="absolute bottom-4 left-4 right-4 text-white">
-                  <h3 className="text-h4 font-semibold">{c.title}</h3>
-                  <p className="text-body-md text-white/85 mt-1">{c.subtitle}</p>
-                  <span className="inline-flex items-center mt-4 px-4 py-2 rounded-full bg-white/90 text-foreground text-body-sm font-medium">
-                    {c.ctaLabel}
+            {cards.map((c, i) => {
+              const isLink = "href" in c;
+              const inner = (
+                <>
+                  <img
+                    src={c.image}
+                    alt={`${c.title} para niños con autismo en Ciudad de México`}
+                    className="absolute inset-0 w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                  <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-white/90 text-foreground text-body-sm font-medium uppercase tracking-tight">
+                    {c.badge}
                   </span>
+                  <div className="absolute bottom-4 left-4 right-4 text-white">
+                    <h3 className="text-h4 font-semibold">{c.title}</h3>
+                    <p className="text-body-md text-white/85 mt-1">{c.subtitle}</p>
+                    {isLink && (
+                      <span className="inline-flex items-center mt-4 px-4 py-2 rounded-full bg-white/90 text-foreground text-body-sm font-medium">
+                        {(c as typeof linkCards[0]).ctaLabel}
+                      </span>
+                    )}
+                  </div>
+                </>
+              );
+              return isLink ? (
+                <a
+                  key={i}
+                  href={(c as typeof linkCards[0]).href}
+                  className="group relative block rounded-2xl overflow-hidden aspect-[4/5] w-full shrink-0 snap-center basis-full"
+                >
+                  {inner}
+                </a>
+              ) : (
+                <div
+                  key={i}
+                  className="relative block rounded-2xl overflow-hidden aspect-[4/5] w-full shrink-0 snap-center basis-full"
+                >
+                  {inner}
                 </div>
-              </a>
-            ))}
+              );
+            })}
           </div>
 
           {/* Scroll indicators */}
@@ -86,33 +105,58 @@ const HomeServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Desktop: grid */}
-        <div className="hidden md:grid gap-6 md:grid-cols-3">
-          {cards.map((c, i) => (
-            <a
-              key={i}
-              href={c.href}
-              className="group relative block rounded-2xl overflow-hidden aspect-[4/5] hover:shadow-lg transition"
-            >
-              <img
-                src={c.image}
-                alt={`${c.title} para niños con autismo en Ciudad de México`}
-                className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-              <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-white/90 text-foreground text-body-sm font-medium uppercase tracking-tight">
-                {c.badge}
-              </span>
-              <div className="absolute bottom-4 left-4 right-4 text-white">
-                <h3 className="text-h4 font-semibold">{c.title}</h3>
-                <p className="text-body-md text-white/85 mt-1">{c.subtitle}</p>
-                <span className="inline-flex items-center mt-4 px-4 py-2 rounded-full bg-white/90 text-foreground text-body-sm font-medium">
-                  {c.ctaLabel}
+        {/* Desktop: first row 3 cols, second row 2 cols centered */}
+        <div className="hidden md:flex md:flex-col gap-6">
+          <div className="grid gap-6 md:grid-cols-3">
+            {linkCards.map((c, i) => (
+              <a
+                key={i}
+                href={c.href}
+                className="group relative block rounded-2xl overflow-hidden aspect-[4/5] hover:shadow-lg transition"
+              >
+                <img
+                  src={c.image}
+                  alt={`${c.title} para niños con autismo en Ciudad de México`}
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-white/90 text-foreground text-body-sm font-medium uppercase tracking-tight">
+                  {c.badge}
                 </span>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="text-h4 font-semibold">{c.title}</h3>
+                  <p className="text-body-md text-white/85 mt-1">{c.subtitle}</p>
+                  <span className="inline-flex items-center mt-4 px-4 py-2 rounded-full bg-white/90 text-foreground text-body-sm font-medium">
+                    {c.ctaLabel}
+                  </span>
+                </div>
+              </a>
+            ))}
+          </div>
+          <div className="grid gap-6 md:grid-cols-2 md:max-w-[calc(66.666%+12px)]">
+            {flatCards.map((c, i) => (
+              <div
+                key={i}
+                className="relative block rounded-2xl overflow-hidden aspect-[4/5]"
+              >
+                <img
+                  src={c.image}
+                  alt={`${c.title} para niños con autismo en Ciudad de México`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+                <span className="absolute top-4 left-4 inline-flex items-center px-3 py-1 rounded-full bg-white/90 text-foreground text-body-sm font-medium uppercase tracking-tight">
+                  {c.badge}
+                </span>
+                <div className="absolute bottom-4 left-4 right-4 text-white">
+                  <h3 className="text-h4 font-semibold">{c.title}</h3>
+                  <p className="text-body-md text-white/85 mt-1">{c.subtitle}</p>
+                </div>
               </div>
-            </a>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
