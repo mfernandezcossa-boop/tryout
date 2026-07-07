@@ -15,7 +15,6 @@ import QuizCTASection from "@/components/QuizCTASection";
 import TargetAudienceSection from "@/components/TargetAudienceSection";
 import NewsletterSection from "@/components/NewsletterSection";
 import Footer from "@/components/Footer";
-import HomeServicesSection from "@/components/HomeServicesSection";
 import ScrollReveal from "@/components/ScrollReveal";
 
 const Index: React.FC = () => {
@@ -134,9 +133,6 @@ const Index: React.FC = () => {
           </ScrollReveal>
           <ScrollReveal>
             <MethodSection />
-          </ScrollReveal>
-          <ScrollReveal>
-            <HomeServicesSection />
           </ScrollReveal>
           <ScrollReveal variant="fadeIn">
             <SupervisionSection />
