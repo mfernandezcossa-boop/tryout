@@ -47,12 +47,15 @@ const services = [
 const ServicesSection: React.FC = () => {
   const [activeIndex, setActiveIndex] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const isDragging = useRef(false);
+  const startX = useRef(0);
+  const startScrollLeft = useRef(0);
 
   useEffect(() => {
     const el = scrollRef.current;
     if (!el) return;
     const onScroll = () => {
-      const cardWidth = el.scrollWidth / services.length;
+      const cardWidth = el.offsetWidth * 0.82 + 16; // card width + gap
       const idx = Math.round(el.scrollLeft / cardWidth);
       setActiveIndex(Math.max(0, Math.min(services.length - 1, idx)));
     };
@@ -63,12 +66,37 @@ const ServicesSection: React.FC = () => {
   const scrollToIndex = (i: number) => {
     const el = scrollRef.current;
     if (!el) return;
-    const cardWidth = el.scrollWidth / services.length;
+    const cardWidth = el.offsetWidth * 0.82 + 16;
     el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
   };
 
+  // Mouse drag to scroll
+  const onMouseDown = (e: React.MouseEvent) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    isDragging.current = true;
+    startX.current = e.pageX - el.offsetLeft;
+    startScrollLeft.current = el.scrollLeft;
+    el.style.cursor = "grabbing";
+    el.style.userSelect = "none";
+  };
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging.current) return;
+    const el = scrollRef.current;
+    if (!el) return;
+    const x = e.pageX - el.offsetLeft;
+    el.scrollLeft = startScrollLeft.current - (x - startX.current);
+  };
+
+  const onMouseUp = () => {
+    isDragging.current = false;
+    const el = scrollRef.current;
+    if (el) { el.style.cursor = "grab"; el.style.userSelect = ""; }
+  };
+
   return (
-    <section className="w-full bg-background section-px section-py">
+    <section className="w-full bg-background section-py overflow-hidden">
       <div className="section-container space-y-10 md:space-y-12">
         <div className="section-header">
           <p className="text-body-sm font-semibold text-brand-black uppercase tracking-widest">
@@ -81,51 +109,21 @@ const ServicesSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Mobile: horizontal scroll */}
-        <div className="md:hidden">
-          <div
-            ref={scrollRef}
-            className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden"
-          >
-            {services.map((service, index) => {
-              const Icon = service.icon;
-              return (
-                <article
-                  key={index}
-                  className={`${service.bgColor} rounded-brilus-card p-6 space-y-4 shadow-brilus-1 shrink-0 w-[85vw] snap-center`}
-                >
-                  <div className="mb-2">
-                    <Icon className={`w-10 h-10 ${service.iconColor}`} strokeWidth={2} fill="none" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-h4 text-brand-black font-semibold">{service.title}</h3>
-                    <p className="text-body-md text-brand-black/70">{service.description}</p>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-          <div className="flex justify-center gap-2 mt-6">
-            {services.map((_, i) => (
-              <button
-                key={i}
-                onClick={() => scrollToIndex(i)}
-                aria-label={`Ir a servicio ${i + 1}`}
-                className={`h-2 rounded-full transition-all duration-300 ${activeIndex === i ? "w-8 bg-brand-blue" : "w-2 bg-brand-blue/30"}`}
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Desktop: grid 3+2 */}
-        <div className="hidden md:grid grid-cols-6 gap-6">
+        {/* Scrollable cards — all breakpoints */}
+        <div
+          ref={scrollRef}
+          onMouseDown={onMouseDown}
+          onMouseMove={onMouseMove}
+          onMouseUp={onMouseUp}
+          onMouseLeave={onMouseUp}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory scroll-smooth pb-2 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden cursor-grab select-none"
+        >
           {services.map((service, index) => {
             const Icon = service.icon;
-            const isBottom = index >= 3;
             return (
               <article
                 key={index}
-                className={`${service.bgColor} rounded-brilus-card p-10 space-y-5 shadow-brilus-1 ${isBottom ? "col-span-3" : "col-span-2"}`}
+                className={`${service.bgColor} rounded-brilus-card p-6 md:p-8 space-y-4 shadow-brilus-1 shrink-0 w-[82%] md:w-[340px] lg:w-[380px] snap-center`}
               >
                 <div className="mb-2">
                   <Icon className={`w-10 h-10 ${service.iconColor}`} strokeWidth={2} fill="none" />
@@ -137,6 +135,18 @@ const ServicesSection: React.FC = () => {
               </article>
             );
           })}
+        </div>
+
+        {/* Dot indicators */}
+        <div className="flex justify-center gap-2 mt-4">
+          {services.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Ir a servicio ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${activeIndex === i ? "w-8 bg-brand-blue" : "w-2 bg-brand-blue/30"}`}
+            />
+          ))}
         </div>
       </div>
     </section>
