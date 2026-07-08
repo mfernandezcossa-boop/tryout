@@ -6,7 +6,7 @@ const HeroSection: React.FC = () => {
     <section className="relative w-full min-h-[90vh] md:min-h-screen overflow-hidden flex items-end md:items-center">
       {/* Background image */}
       <img
-        src="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/website_assets/heros/hero_background_home.webp"
+        src="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/Photos/Home/pexels-ivan-s-4783976%20(2).webp"
         alt="Madre acompañando a su hijo con autismo"
         className="absolute inset-0 w-full h-full object-cover object-center"
         fetchPriority="high"
