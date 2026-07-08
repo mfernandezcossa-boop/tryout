@@ -12,7 +12,7 @@ import { ABAProcessSection } from "@/components/aba-intensivo/ABAProcessSection"
 import LocationsSection from "@/components/LocationsSection";
 import { ABAConditionsSection } from "@/components/aba-intensivo/ABAConditionsSection";
 import { ABAFinalCTASection } from "@/components/aba-intensivo/ABAFinalCTASection";
-import { ABATestimonialsSection } from "@/components/aba-intensivo/ABATestimonialsSection";
+import TestimonialBlock from "@/components/TestimonialBlock";
 import { ABAFAQsSection } from "@/components/aba-intensivo/ABAFAQsSection";
 const ABAIntensivo = () => {
   const structuredData = {
@@ -77,7 +77,7 @@ const ABAIntensivo = () => {
           {/* 9. Condiciones */}
           <ABAConditionsSection />
           {/* 10. Testimonios */}
-          <ABATestimonialsSection />
+          <TestimonialBlock displayLocation="aba" />
           {/* 11. FAQs */}
           <div id="faqs">
             <ABAFAQsSection />

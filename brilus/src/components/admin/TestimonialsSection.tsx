@@ -15,7 +15,9 @@ interface Testimonial {
   id: string;
   quote: string;
   author_name: string;
+  author_vinculo?: string | null;
   author_photo_url?: string | null;
+  youtube_url?: string | null;
   visible: boolean;
   order_index: number;
   display_location: string;
@@ -46,7 +48,7 @@ export default function TestimonialsSection() {
   const [editingId, setEditingId] = useState<string | null>(null);
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
-    quote: "", author_name: "", author_photo_url: "", visible: true, order_index: 100, display_location: "all",
+    quote: "", author_name: "", author_vinculo: "", author_photo_url: "", youtube_url: "", visible: true, order_index: 100, display_location: "all",
   });
 
   const { data: testimonials = [], isLoading } = useQuery({
@@ -92,13 +94,13 @@ export default function TestimonialsSection() {
 
   const openNew = () => {
     setEditingId(null);
-    setFormData({ quote: "", author_name: "", author_photo_url: "", visible: true, order_index: 100, display_location: "all" });
+    setFormData({ quote: "", author_name: "", author_vinculo: "", author_photo_url: "", youtube_url: "", visible: true, order_index: 100, display_location: "all" });
     setDialogOpen(true);
   };
 
   const openEdit = (t: Testimonial) => {
     setEditingId(t.id);
-    setFormData({ quote: t.quote, author_name: t.author_name, author_photo_url: t.author_photo_url || "", visible: t.visible, order_index: t.order_index, display_location: t.display_location || "all" });
+    setFormData({ quote: t.quote, author_name: t.author_name, author_vinculo: t.author_vinculo || "", author_photo_url: t.author_photo_url || "", youtube_url: t.youtube_url || "", visible: t.visible, order_index: t.order_index, display_location: t.display_location || "all" });
     setDialogOpen(true);
   };
 
@@ -168,13 +170,24 @@ export default function TestimonialsSection() {
               <Label>Testimonio *</Label>
               <Textarea value={formData.quote} onChange={(e) => setFormData({ ...formData, quote: e.target.value })} rows={4} required />
             </div>
-            <div className="space-y-2">
-              <Label>Nombre del autor *</Label>
-              <Input value={formData.author_name} onChange={(e) => setFormData({ ...formData, author_name: e.target.value })} required />
+            <div className="grid grid-cols-2 gap-4">
+              <div className="space-y-2">
+                <Label>Nombre del autor *</Label>
+                <Input value={formData.author_name} onChange={(e) => setFormData({ ...formData, author_name: e.target.value })} required />
+              </div>
+              <div className="space-y-2">
+                <Label>Vínculo (ej: Mamá de Mateo)</Label>
+                <Input value={formData.author_vinculo} onChange={(e) => setFormData({ ...formData, author_vinculo: e.target.value })} placeholder="Mamá de Mateo" />
+              </div>
             </div>
             <div className="space-y-2">
-              <Label>URL foto (opcional)</Label>
-              <Input type="url" value={formData.author_photo_url} onChange={(e) => setFormData({ ...formData, author_photo_url: e.target.value })} />
+              <Label>URL foto</Label>
+              <Input type="url" value={formData.author_photo_url} onChange={(e) => setFormData({ ...formData, author_photo_url: e.target.value })} placeholder="https://..." />
+            </div>
+            <div className="space-y-2">
+              <Label>Video de YouTube (opcional — reemplaza la foto)</Label>
+              <Input type="url" value={formData.youtube_url} onChange={(e) => setFormData({ ...formData, youtube_url: e.target.value })} placeholder="https://www.youtube.com/watch?v=..." />
+              <p className="text-xs text-muted-foreground">Si subís un video, se muestra en lugar de la foto.</p>
             </div>
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
