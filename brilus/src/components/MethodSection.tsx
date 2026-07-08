@@ -1,117 +1,83 @@
-import React, { useState, useRef, useEffect } from "react";
+import React from "react";
+import { Link } from "react-router-dom";
+import { Target } from "lucide-react";
+
+const features = [
+  {
+    title: "Acceso inmediato",
+    description: "Tu hijo con autismo puede iniciar la terapia ABA en Ciudad de México de forma inmediata. Porque cada mes en su desarrollo importa.",
+    cta: { label: "Agendar Cita", href: "/contacto" },
+  },
+  {
+    title: "Apoyo diagnóstico",
+    description: "Realizamos evaluaciones diagnósticas en Ciudad de México y te orientarnos en cada paso.",
+    cta: { label: "Screening gratuito", href: "/diagnostico" },
+  },
+  {
+    title: "Un modelo integral y multidisciplinario",
+    description: "Cada niño es único. Diseñamos un programa terapéutico adaptado a sus objetivos, fortalezas y ritmo de aprendizaje.",
+    cta: null,
+  },
+  {
+    title: "Supervisión por expertas en Autismo, TDAH",
+    description: "Todas las sesiones son diseñadas y supervisadas por una especialista certificada en análisis del comportamiento.",
+    cta: null,
+  },
+  {
+    title: "Entrenamiento a Padres",
+    description: "Con herramientas concretas para el día a día, vas a sentirte más segura acompañando a tu hijo con autismo — dentro y fuera de las sesiones.",
+    cta: { label: "Inscribirse", href: "/contacto" },
+  },
+  {
+    title: "Sombra Escolar Terapéutica",
+    description: "Una terapeuta acompaña a tu hijo con autismo dentro del aula en Ciudad de México. Coordinamos con su maestra para que la inclusión escolar sea real.",
+    cta: { label: "Ver más", href: "/servicios/sombra-escolar" },
+  },
+];
 
 const MethodSection: React.FC = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      if (!scrollContainerRef.current) return;
-      const scrollLeft = scrollContainerRef.current.scrollLeft;
-      const cardWidth = scrollContainerRef.current.scrollWidth / features.length;
-      const index = Math.round(scrollLeft / cardWidth);
-      setActiveIndex(index);
-    };
-
-    const container = scrollContainerRef.current;
-    if (container) {
-      container.addEventListener("scroll", handleScroll);
-      return () => container.removeEventListener("scroll", handleScroll);
-    }
-  }, []);
-
-  const features = [
-    {
-      icon: "https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/website_assets/icons/Icono%20feature%201.svg",
-      title: "Planes de Cuidado Personalizados",
-      description:
-        "Cada niño recibe un plan adaptado a su perfil, con seguimiento continuo. Se ajusta si es necesario para acompañar su evolución.",
-    },
-    {
-      icon: "https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/website_assets/icons/Icono%20feature%202.svg",
-      title: "Acompañamiento estratégico a padres",
-      description:
-        "Brindamos herramientas para que cada decisión sea informada, sostenible y en favor del desarrollo de su hijo.",
-    },
-    {
-      icon: "https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/website_assets/icons/Icono%20feature%203.svg",
-      title: "Interacción con el ambiente del niño",
-      description:
-        "Trabajamos junto a su entorno —hogar, rutinas, vínculos—para que la terapia se integre de forma natural en su vida cotidiana.",
-    },
-  ];
-
   return (
-    <section className="w-full bg-background section-px section-py">
-      <div className="section-container">
+    <section className="w-full bg-[#D6E4F7] section-py">
+      <div className="section-px section-container">
+        {/* Header */}
         <div className="section-header">
-          <img
-            src="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/website_assets/images/logo_metodo_brilus.webp"
-            alt="Logo Brilus - Método integral para desarrollo infantil"
-            width={160}
-            height={80}
-            loading="lazy"
-            className="w-[120px] md:w-[160px] mx-auto"
-          />
-          <div className="space-y-[16px]">
-            <h2 className="text-h4 text-brand-black">El Método Brilus</h2>
-            <h3 className="text-h1 text-brand-black">Un enfoque integral para el desarrollo infantil</h3>
-            <p className="text-body-lg text-muted-foreground max-w-[960px] mx-auto">
-              En Brilus, sabemos que cada niño es único. Por eso, creamos planes de intervención personalizados para
-              niños con autismo que integran Terapia ABA, lenguaje y terapia ocupacional. Siempre bajo la supervisión de
-              nuestra especialista BCBA.
-            </p>
-          </div>
+          <p className="text-body-sm font-medium text-brand-black/60 uppercase tracking-widest">
+            Por qué elegirnos
+          </p>
+          <h2 className="text-h1 font-bold text-brand-black">
+            Todo lo que una familia con autismo necesita, en un solo lugar
+          </h2>
+          <p className="text-body-lg text-brand-black/70 max-w-[680px] mx-auto">
+            Combinamos la evidencia científica de la Terapia ABA con el acompañamiento humano que cada mamá, papá y niño merece.
+          </p>
         </div>
 
-        <div
-          ref={scrollContainerRef}
-          className="flex gap-8 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-hide pl-4 pr-[calc(50vw-140px)] md:pl-0 md:pr-0 md:grid md:grid-cols-2 md:overflow-x-visible md:snap-none xl:grid-cols-3"
-          style={{
-            scrollbarWidth: "none",
-            msOverflowStyle: "none",
-          }}
-        >
+        {/* Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
           {features.map((feature, index) => (
             <article
               key={index}
-              className={`flex flex-col items-center text-center h-auto p-6 md:p-12 rounded-brilus-card bg-white border border-border min-w-[80vw] snap-center md:min-w-0 ${
-                index === 2 ? "md:col-span-2 md:justify-self-center md:max-w-[480px] xl:col-span-1 xl:max-w-none" : ""
-              }`}
+              className="bg-white rounded-2xl p-6 md:p-8 flex flex-col gap-4"
             >
-              <img
-                src={feature.icon}
-                alt={`${feature.title} icon`}
-                width={64}
-                height={64}
-                loading="lazy"
-                className="w-[clamp(48px,6vw,72px)] h-[clamp(48px,6vw,72px)] object-contain mb-6"
-              />
-              <h3 className="text-h4 font-semibold mb-3 text-brand-black">{feature.title}</h3>
-              <p className="text-body-md text-muted-foreground leading-relaxed">{feature.description}</p>
-            </article>
-          ))}
-        </div>
+              {/* Icon placeholder */}
+              <div className="w-10 h-10 rounded-xl bg-brand-blue-50 flex items-center justify-center">
+                <Target className="w-5 h-5 text-brand-blue" />
+              </div>
 
-        {/* Indicadores de scroll solo en mobile */}
-        <div className="flex justify-center gap-2 mt-6 md:hidden">
-          {features.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => {
-                if (scrollContainerRef.current) {
-                  const cardWidth = scrollContainerRef.current.scrollWidth / features.length;
-                  scrollContainerRef.current.scrollTo({
-                    left: cardWidth * index,
-                    behavior: "smooth",
-                  });
-                }
-              }}
-              className={`h-2 rounded-brilus-pill transition-all duration-300 ${
-                activeIndex === index ? "w-8 bg-brand-blue" : "w-2 bg-brand-blue/30"
-              }`}
-              aria-label={`Ir a tarjeta ${index + 1}`}
-            />
+              <div className="space-y-2 flex-1">
+                <h3 className="text-h4 font-semibold text-brand-black">{feature.title}</h3>
+                <p className="text-body-md text-brand-black/60 leading-relaxed">{feature.description}</p>
+              </div>
+
+              {feature.cta && (
+                <Link
+                  to={feature.cta.href}
+                  className="self-start inline-flex items-center justify-center px-4 py-2 text-body-sm font-semibold bg-brand-black text-white rounded-brilus hover:bg-brand-black/80 transition-colors"
+                >
+                  {feature.cta.label}
+                </Link>
+              )}
+            </article>
           ))}
         </div>
       </div>
