@@ -9,7 +9,7 @@ import TherapySection from "@/components/TherapySection";
 import CallToActionSection from "@/components/CallToActionSection";
 import ServicesSection from "@/components/ServicesSection";
 import LocationsSection from "@/components/LocationsSection";
-import TestimonialsCarouselContacto from "@/components/TestimonialsCarouselContacto";
+import TestimonialBlock from "@/components/TestimonialBlock";
 import ProcessSection from "@/components/ProcessSection";
 import QuizCTASection from "@/components/QuizCTASection";
 import TargetAudienceSection from "@/components/TargetAudienceSection";
@@ -156,7 +156,7 @@ const Index: React.FC = () => {
             <WebinarVideoSection />
           </ScrollReveal>
           <ScrollReveal variant="fadeIn">
-            <TestimonialsCarouselContacto />
+            <TestimonialBlock displayLocation="home" />
           </ScrollReveal>
           <ScrollReveal>
             <LocationsSection />

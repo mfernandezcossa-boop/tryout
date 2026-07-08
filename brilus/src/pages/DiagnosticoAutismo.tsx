@@ -4,7 +4,7 @@ import NavbarBrilus from "@/components/NavbarBrilus";
 import Footer from "@/components/Footer";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import ScreeningSelector, { ScreeningOptions } from "@/components/diagnostico/ScreeningSelector";
-import TestimonialsSection from "@/components/TestimonialsSection";
+import TestimonialBlock from "@/components/TestimonialBlock";
 import { Check, X, ArrowUpRight, Trophy, Gamepad2, FileText, Building2 } from "lucide-react";
 import { diagnosticoFaqs as faqs } from "@/content/diagnosticoFaqs";
 

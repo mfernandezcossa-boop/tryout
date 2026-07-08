@@ -667,6 +667,8 @@ export type Database = {
         Row: {
           author_name: string
           author_photo_url: string | null
+          author_vinculo: string | null
+          youtube_url: string | null
           created_at: string
           created_by: string | null
           display_location: string
@@ -680,6 +682,8 @@ export type Database = {
         Insert: {
           author_name: string
           author_photo_url?: string | null
+          author_vinculo?: string | null
+          youtube_url?: string | null
           created_at?: string
           created_by?: string | null
           display_location?: string
@@ -693,6 +697,8 @@ export type Database = {
         Update: {
           author_name?: string
           author_photo_url?: string | null
+          author_vinculo?: string | null
+          youtube_url?: string | null
           created_at?: string
           created_by?: string | null
           display_location?: string
