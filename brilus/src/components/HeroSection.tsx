@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const HeroSection: React.FC = () => {
   return (
-    <section className="relative w-full min-h-screen overflow-hidden flex items-center">
+    <section className="relative w-full min-h-[70vh] md:min-h-screen overflow-hidden flex items-center">
       {/* Background image */}
       <img
         src="https://dozlintkzvgtfjlflkyp.supabase.co/storage/v1/object/public/Photos/Home/pexels-ivan-s-4783976%20(2).webp"
@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 bg-brand-black/55 md:bg-gradient-to-r md:from-brand-black/60 md:via-brand-black/30 md:to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full px-6 md:px-16 lg:px-24 xl:px-32 pt-24 pb-12 md:py-32">
+      <div className="relative z-10 w-full px-5 md:px-16 lg:px-24 xl:px-32 pt-20 pb-8 md:py-32">
 
         {/* Mobile: centrado — Desktop: izquierda */}
         <div className="flex flex-col items-center text-center md:items-start md:text-left max-w-[600px] md:max-w-[600px] mx-auto md:mx-0 space-y-5 md:space-y-6">
