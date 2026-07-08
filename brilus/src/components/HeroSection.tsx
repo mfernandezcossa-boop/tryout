@@ -18,7 +18,7 @@ const HeroSection: React.FC = () => {
       <div className="absolute inset-0 bg-gradient-to-r from-brand-black/60 via-brand-black/30 to-transparent" />
 
       {/* Content */}
-      <div className="relative z-10 w-full section-px pt-28 pb-12 md:pt-0 md:pb-0">
+      <div className="relative z-10 w-full px-8 md:px-16 lg:px-24 xl:px-32 pt-28 pb-12 md:py-32">
         <div className="max-w-[600px] space-y-6">
           <h1 className="text-hero font-bold text-white leading-tight">
             Cada niño con autismo tiene su propio camino.
