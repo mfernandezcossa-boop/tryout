@@ -68,8 +68,8 @@ export default function TestimonialsCarouselContacto() {
     <section className="w-full section-py overflow-hidden">
       <div className="flex flex-col md:flex-row w-full min-h-[380px] md:min-h-[420px] rounded-none md:rounded-3xl overflow-hidden shadow-brilus-2 mx-auto max-w-[1200px]">
 
-        {/* Left: photo */}
-        <div className="relative w-full md:w-[45%] shrink-0 min-h-[260px] md:min-h-0 bg-brand-grey-light">
+        {/* Left: photo — below on mobile, left on desktop */}
+        <div className="relative w-full md:w-[45%] shrink-0 min-h-[260px] md:min-h-0 bg-brand-grey-light order-2 md:order-1">
           {t.author_photo_url ? (
             <img
               src={t.author_photo_url}
@@ -82,12 +82,12 @@ export default function TestimonialsCarouselContacto() {
         </div>
 
         {/* Bubble connector — desktop only */}
-        <div className="hidden md:block relative z-10 -mx-6 self-center shrink-0">
+        <div className="hidden md:block relative z-10 -mx-6 self-center shrink-0 order-2">
           <div className="w-12 h-12 rounded-full bg-brand-blue" />
         </div>
 
-        {/* Right: blue panel */}
-        <div className="relative flex-1 bg-brand-blue flex flex-col justify-between p-8 md:p-12 md:rounded-r-3xl">
+        {/* Right: blue panel — top on mobile, right on desktop */}
+        <div className="relative flex-1 bg-brand-blue flex flex-col justify-between p-8 md:p-12 rounded-t-3xl md:rounded-t-none md:rounded-r-3xl order-1 md:order-3">
           {/* Quote */}
           <blockquote className="text-h3 md:text-h2 font-semibold text-white leading-snug flex-1 flex items-center">
             {t.quote}
