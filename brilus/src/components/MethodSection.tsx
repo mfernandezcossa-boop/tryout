@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Target } from "lucide-react";
 
@@ -36,8 +36,50 @@ const features = [
 ];
 
 const MethodSection: React.FC = () => {
+  const [activeIndex, setActiveIndex] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const onScroll = () => {
+      const cardWidth = el.offsetWidth * 0.85 + 16;
+      const idx = Math.round(el.scrollLeft / cardWidth);
+      setActiveIndex(Math.max(0, Math.min(features.length - 1, idx)));
+    };
+    el.addEventListener("scroll", onScroll, { passive: true });
+    return () => el.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToIndex = (i: number) => {
+    const el = scrollRef.current;
+    if (!el) return;
+    const cardWidth = el.offsetWidth * 0.85 + 16;
+    el.scrollTo({ left: cardWidth * i, behavior: "smooth" });
+  };
+
+  const CardContent = ({ feature }: { feature: typeof features[0] }) => (
+    <>
+      <div className="w-10 h-10 rounded-xl bg-brand-blue-50 flex items-center justify-center">
+        <Target className="w-5 h-5 text-brand-blue" />
+      </div>
+      <div className="space-y-2 flex-1">
+        <h3 className="text-h4 font-semibold text-brand-black">{feature.title}</h3>
+        <p className="text-body-md text-brand-black/60 leading-relaxed">{feature.description}</p>
+      </div>
+      {feature.cta && (
+        <Link
+          to={feature.cta.href}
+          className="self-start inline-flex items-center justify-center px-4 py-2 text-body-sm font-semibold bg-brand-black text-white rounded-brilus hover:bg-brand-black/80 transition-colors"
+        >
+          {feature.cta.label}
+        </Link>
+      )}
+    </>
+  );
+
   return (
-    <section className="w-full bg-[#D6E4F7] section-py">
+    <section className="w-full bg-[#D6E4F7] section-py overflow-hidden">
       <div className="section-px section-container">
         {/* Header */}
         <div className="section-header">
@@ -51,32 +93,47 @@ const MethodSection: React.FC = () => {
             Combinamos la evidencia científica de la Terapia ABA con el acompañamiento humano que cada mamá, papá y niño merece.
           </p>
         </div>
+      </div>
 
-        {/* Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-5">
+      {/* Mobile: horizontal scroll */}
+      <div className="md:hidden">
+        <div
+          ref={scrollRef}
+          className="flex gap-4 overflow-x-auto snap-x snap-mandatory pb-2 px-5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        >
           {features.map((feature, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl p-8 md:p-10 flex flex-col gap-6"
+              className="bg-white rounded-2xl p-7 flex flex-col gap-5 shrink-0 w-[85vw] snap-center"
             >
-              {/* Icon placeholder */}
-              <div className="w-10 h-10 rounded-xl bg-brand-blue-50 flex items-center justify-center">
-                <Target className="w-5 h-5 text-brand-blue" />
-              </div>
+              <CardContent feature={feature} />
+            </article>
+          ))}
+        </div>
+        {/* Dots */}
+        <div className="flex justify-center gap-2 mt-5">
+          {features.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => scrollToIndex(i)}
+              aria-label={`Ir a tarjeta ${i + 1}`}
+              className={`h-2 rounded-full transition-all duration-300 ${
+                i === activeIndex ? "w-8 bg-brand-blue" : "w-2 bg-brand-blue/30"
+              }`}
+            />
+          ))}
+        </div>
+      </div>
 
-              <div className="space-y-2 flex-1">
-                <h3 className="text-h4 font-semibold text-brand-black">{feature.title}</h3>
-                <p className="text-body-md text-brand-black/60 leading-relaxed">{feature.description}</p>
-              </div>
-
-              {feature.cta && (
-                <Link
-                  to={feature.cta.href}
-                  className="self-start inline-flex items-center justify-center px-4 py-2 text-body-sm font-semibold bg-brand-black text-white rounded-brilus hover:bg-brand-black/80 transition-colors"
-                >
-                  {feature.cta.label}
-                </Link>
-              )}
+      {/* Desktop: 2-column grid */}
+      <div className="hidden md:block section-px section-container mt-0">
+        <div className="grid grid-cols-2 gap-5">
+          {features.map((feature, index) => (
+            <article
+              key={index}
+              className="bg-white rounded-2xl p-10 flex flex-col gap-6"
+            >
+              <CardContent feature={feature} />
             </article>
           ))}
         </div>
