@@ -57,7 +57,7 @@ const MethodSection: React.FC = () => {
           {features.map((feature, index) => (
             <article
               key={index}
-              className="bg-white rounded-2xl p-6 md:p-8 flex flex-col gap-4"
+              className="bg-white rounded-2xl p-8 md:p-10 flex flex-col gap-6"
             >
               {/* Icon placeholder */}
               <div className="w-10 h-10 rounded-xl bg-brand-blue-50 flex items-center justify-center">
