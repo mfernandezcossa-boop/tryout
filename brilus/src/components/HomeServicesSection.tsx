@@ -1,7 +1,14 @@
 import React, { useEffect, useRef, useState } from "react";
 import { SERVICE_CARDS } from "@/content/serviceCards";
 
-const cards = [SERVICE_CARDS.casa, SERVICE_CARDS.centro, SERVICE_CARDS.escuela];
+const cards = [
+  SERVICE_CARDS.casa,
+  SERVICE_CARDS.centro,
+  SERVICE_CARDS.escuela,
+  SERVICE_CARDS.padres,
+  SERVICE_CARDS.sombra,
+  SERVICE_CARDS.diagnostico,
+];
 
 const HomeServicesSection: React.FC = () => {
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -31,10 +38,10 @@ const HomeServicesSection: React.FC = () => {
       <div className="container mx-auto px-4 md:px-6 max-w-7xl">
         <div className="mb-10 md:mb-12 max-w-3xl">
           <h2 className="text-h2 font-semibold text-foreground tracking-tight">
-            Tres entornos, un mismo plan clínico
+            Todo lo que tu hijo necesita, en un solo lugar
           </h2>
           <p className="text-body-md text-foreground/70 mt-3">
-            Acompañamos a tu hijo donde más lo necesita: en casa, en el centro o en la escuela.
+            Terapia en casa, en el centro, en la escuela, sombra escolar, entrenamiento a padres y diagnóstico.
           </p>
         </div>
 
@@ -86,7 +93,7 @@ const HomeServicesSection: React.FC = () => {
           </div>
         </div>
 
-        {/* Desktop: grid */}
+        {/* Desktop: 3x2 grid */}
         <div className="hidden md:grid gap-6 md:grid-cols-3">
           {cards.map((c, i) => (
             <a
