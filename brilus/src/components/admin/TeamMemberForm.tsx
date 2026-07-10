@@ -291,6 +291,19 @@ export const TeamMemberForm = ({ memberId, onSave, onCancel }: TeamMemberFormPro
             )}
           </div>
 
+          {/* Formación */}
+          <div className="space-y-1.5">
+            <Label htmlFor="formacion">Formación <Badge variant="secondary" className="ml-1 text-xs">Opcional</Badge></Label>
+            <Input
+              id="formacion"
+              value={formacion}
+              onChange={(e) => setFormacion(e.target.value)}
+              placeholder="Ej: Licenciatura en Psicología, UNAM · Maestría en Análisis Conductual, ITAM"
+              maxLength={200}
+            />
+            <p className="text-xs text-muted-foreground">Universidad y título(s) obtenidos</p>
+          </div>
+
           {/* Role */}
           <div className="space-y-1.5">
             <Label>Rol / Posición *</Label>
@@ -363,19 +376,6 @@ export const TeamMemberForm = ({ memberId, onSave, onCancel }: TeamMemberFormPro
             </CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
-            {/* Formación */}
-            <div className="space-y-1.5">
-              <Label htmlFor="formacion">Formación</Label>
-              <Input
-                id="formacion"
-                value={formacion}
-                onChange={(e) => setFormacion(e.target.value)}
-                placeholder="Ej: Licenciatura en Psicología, UNAM · Maestría en Análisis Conductual, ITAM"
-                maxLength={200}
-              />
-              <p className="text-xs text-muted-foreground">Universidad y título(s) obtenidos</p>
-            </div>
-
             {/* Cédula */}
             <div className="space-y-1.5">
               <Label htmlFor="cert_number">Cédula / Número de certificación</Label>
