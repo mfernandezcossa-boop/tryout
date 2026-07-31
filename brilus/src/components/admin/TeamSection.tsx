@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Plus, Search, Edit, Trash2, User, Filter } from "lucide-react";
+import { Plus, Search, Edit, Trash2, User, Filter, ChevronUp, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -60,8 +60,10 @@ export const TeamSection = () => {
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [deleteTarget, setDeleteTarget] = useState<TeamMember | null>(null);
+  const [reordering, setReordering] = useState(false);
 
   const isAdmin = userRoles.roles.includes("admin");
+  const isFiltering = search !== "" || roleFilter !== "all" || statusFilter !== "all";
 
   useEffect(() => {
     fetchMembers();
@@ -107,6 +109,31 @@ export const TeamSection = () => {
       toast({ title: "Perfil eliminado", description: "Puedes restaurarlo desde el archivo si lo necesitas." });
     }
     setDeleteTarget(null);
+  };
+
+  const moveOrder = async (id: string, direction: "up" | "down") => {
+    const sorted = [...members].sort((a, b) => a.order_index - b.order_index);
+    const idx = sorted.findIndex(m => m.id === id);
+    const swapIdx = direction === "up" ? idx - 1 : idx + 1;
+    if (swapIdx < 0 || swapIdx >= sorted.length) return;
+
+    const a = sorted[idx];
+    const b = sorted[swapIdx];
+    setReordering(true);
+    const [r1, r2] = await Promise.all([
+      supabase.from("team_members").update({ order_index: b.order_index }).eq("id", a.id),
+      supabase.from("team_members").update({ order_index: a.order_index }).eq("id", b.id),
+    ]);
+    setReordering(false);
+    if (r1.error || r2.error) {
+      toast({ title: "Error", description: "No se pudo cambiar el orden", variant: "destructive" });
+    } else {
+      setMembers(members.map(m => {
+        if (m.id === a.id) return { ...m, order_index: b.order_index };
+        if (m.id === b.id) return { ...m, order_index: a.order_index };
+        return m;
+      }).sort((x, y) => x.order_index - y.order_index));
+    }
   };
 
   const filteredMembers = members.filter(m => {
@@ -223,8 +250,13 @@ export const TeamSection = () => {
           )}
         </div>
       ) : (
+        {isFiltering && (
+          <p className="text-xs text-muted-foreground bg-muted/50 rounded-lg px-3 py-2">
+            Los botones ↑ ↓ de orden solo están disponibles sin filtros activos.
+          </p>
+        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredMembers.map((member) => (
+          {filteredMembers.map((member, idx) => (
             <div
               key={member.id}
               className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md group"
@@ -243,7 +275,33 @@ export const TeamSection = () => {
                   </div>
                 )}
                 <div className="flex-1 min-w-0">
-                  <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
+                  <div className="flex items-start justify-between gap-1">
+                    <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
+                    {!isFiltering && (
+                      <div className="flex flex-col gap-0.5 flex-shrink-0">
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                          onClick={() => moveOrder(member.id, "up")}
+                          disabled={reordering || idx === 0}
+                          aria-label="Mover arriba"
+                        >
+                          <ChevronUp className="h-3 w-3" />
+                        </Button>
+                        <Button
+                          variant="ghost"
+                          size="icon"
+                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
+                          onClick={() => moveOrder(member.id, "down")}
+                          disabled={reordering || idx === filteredMembers.length - 1}
+                          aria-label="Mover abajo"
+                        >
+                          <ChevronDown className="h-3 w-3" />
+                        </Button>
+                      </div>
+                    )}
+                  </div>
                   <p className="text-sm text-muted-foreground truncate">{member.role_title}</p>
                   <Badge
                     variant={member.visible ? "default" : "secondary"}
