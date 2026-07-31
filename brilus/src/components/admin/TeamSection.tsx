@@ -256,11 +256,6 @@ export const TeamSection = () => {
         </div>
       ) : (
         <>
-        {isFiltering && (
-          <p className="text-xs text-muted-foreground bg-muted/50 rounded-lg px-3 py-2">
-            Los botones ↑ ↓ de orden solo están disponibles sin filtros activos.
-          </p>
-        )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {filteredMembers.map((member) => {
             const segmentMembers = filteredMembers.filter(m => m.category === member.category);
@@ -286,7 +281,7 @@ export const TeamSection = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-1">
                     <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
-                    {!isFiltering && (
+                    {(
                       <div className="flex flex-col gap-0.5 flex-shrink-0">
                         <Button
                           variant="ghost"
