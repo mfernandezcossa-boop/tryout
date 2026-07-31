@@ -30,6 +30,7 @@ interface TeamMember {
   id: string;
   name: string;
   role_title: string;
+  category: string | null;
   bio_short: string | null;
   photo_url: string | null;
   visible: boolean;
@@ -112,7 +113,11 @@ export const TeamSection = () => {
   };
 
   const moveOrder = async (id: string, direction: "up" | "down") => {
-    const sorted = [...members].sort((a, b) => a.order_index - b.order_index);
+    const target = members.find(m => m.id === id);
+    if (!target) return;
+    const sorted = [...members]
+      .filter(m => m.category === target.category)
+      .sort((a, b) => a.order_index - b.order_index);
     const idx = sorted.findIndex(m => m.id === id);
     const swapIdx = direction === "up" ? idx - 1 : idx + 1;
     if (swapIdx < 0 || swapIdx >= sorted.length) return;
@@ -257,7 +262,10 @@ export const TeamSection = () => {
           </p>
         )}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredMembers.map((member, idx) => (
+          {filteredMembers.map((member) => {
+            const segmentMembers = filteredMembers.filter(m => m.category === member.category);
+            const segmentIdx = segmentMembers.findIndex(m => m.id === member.id);
+            return (
             <div
               key={member.id}
               className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md group"
@@ -285,7 +293,7 @@ export const TeamSection = () => {
                           size="icon"
                           className="h-5 w-5 text-muted-foreground hover:text-foreground"
                           onClick={() => moveOrder(member.id, "up")}
-                          disabled={reordering || idx === 0}
+                          disabled={reordering || segmentIdx === 0}
                           aria-label="Mover arriba"
                         >
                           <ChevronUp className="h-3 w-3" />
@@ -295,7 +303,7 @@ export const TeamSection = () => {
                           size="icon"
                           className="h-5 w-5 text-muted-foreground hover:text-foreground"
                           onClick={() => moveOrder(member.id, "down")}
-                          disabled={reordering || idx === filteredMembers.length - 1}
+                          disabled={reordering || segmentIdx === segmentMembers.length - 1}
                           aria-label="Mover abajo"
                         >
                           <ChevronDown className="h-3 w-3" />
@@ -353,7 +361,8 @@ export const TeamSection = () => {
                 </div>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
         </>
       )}
