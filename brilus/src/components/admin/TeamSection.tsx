@@ -40,14 +40,13 @@ interface TeamMember {
   filosofia: string | null;
 }
 
-const ROLE_OPTIONS = [
-  "Terapeuta ABA",
-  "Terapeuta Ocupacional",
-  "Terapeuta de Lenguaje",
-  "Coordinadora de Casos",
-  "Marketing & Comunicación",
-  "Operaciones",
-  "Director Clínico",
+const CATEGORY_OPTIONS = [
+  "Dirección clínica",
+  "BCBA",
+  "Terapeuta",
+  "Dirección y coordinación",
+  "Equipo médico",
+  "Hospital Español",
 ];
 
 export const TeamSection = () => {
@@ -144,9 +143,16 @@ export const TeamSection = () => {
     reordered.splice(fromIdx, 1);
     reordered.splice(toIdx, 0, from);
 
-    // Assign new order_index values (use the original values to preserve spacing with other categories)
-    const originalIndexes = categoryMembers.map(m => m.order_index).sort((a, b) => a - b);
-    const updates = reordered.map((m, i) => ({ id: m.id, order_index: originalIndexes[i] }));
+    // Use sequential indexes starting from base to avoid collisions
+    const base = Math.min(...categoryMembers.map(m => m.order_index));
+    const updates = reordered.map((m, i) => ({ id: m.id, order_index: base + i }));
+
+    // Optimistic update
+    const updateMap = Object.fromEntries(updates.map(u => [u.id, u.order_index]));
+    setMembers(prev =>
+      prev.map(m => updateMap[m.id] !== undefined ? { ...m, order_index: updateMap[m.id] } : m)
+        .sort((a, b) => a.order_index - b.order_index)
+    );
 
     setSaving(true);
     const results = await Promise.all(
@@ -155,20 +161,16 @@ export const TeamSection = () => {
     setSaving(false);
 
     if (results.some(r => r.error)) {
-      toast({ title: "Error", description: "No se pudo guardar el orden", variant: "destructive" });
-    } else {
-      const updateMap = Object.fromEntries(updates.map(u => [u.id, u.order_index]));
-      setMembers(members.map(m => updateMap[m.id] !== undefined ? { ...m, order_index: updateMap[m.id] } : m)
-        .sort((a, b) => a.order_index - b.order_index));
-      toast({ title: "Orden guardado" });
+      toast({ title: "Error al guardar el orden", variant: "destructive" });
+      fetchMembers();
     }
   };
 
   const filteredMembers = members.filter(m => {
     const matchSearch = !search || m.name.toLowerCase().includes(search.toLowerCase()) || m.role_title.toLowerCase().includes(search.toLowerCase());
-    const matchRole = roleFilter === "all" || m.role_title === roleFilter;
+    const matchCategory = roleFilter === "all" || m.category === roleFilter;
     const matchStatus = statusFilter === "all" || (statusFilter === "published" ? m.visible : !m.visible);
-    return matchSearch && matchRole && matchStatus;
+    return matchSearch && matchCategory && matchStatus;
   });
 
   if (isCreating || editingMember) {
@@ -217,14 +219,14 @@ export const TeamSection = () => {
           />
         </div>
         <Select value={roleFilter} onValueChange={setRoleFilter}>
-          <SelectTrigger className="w-full sm:w-[200px]">
+          <SelectTrigger className="w-full sm:w-[220px]">
             <Filter className="h-4 w-4 mr-2 text-muted-foreground" />
-            <SelectValue placeholder="Filtrar por rol" />
+            <SelectValue placeholder="Filtrar por segmento" />
           </SelectTrigger>
           <SelectContent>
-            <SelectItem value="all">Todos los roles</SelectItem>
-            {ROLE_OPTIONS.map(r => (
-              <SelectItem key={r} value={r}>{r}</SelectItem>
+            <SelectItem value="all">Todos los segmentos</SelectItem>
+            {CATEGORY_OPTIONS.map(c => (
+              <SelectItem key={c} value={c}>{c}</SelectItem>
             ))}
           </SelectContent>
         </Select>
@@ -305,7 +307,10 @@ export const TeamSection = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-1">
                     <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
-                    <GripVertical className="h-4 w-4 text-muted-foreground/40 flex-shrink-0 mt-0.5" />
+                    <div className="flex items-center gap-1 flex-shrink-0">
+                      <span className="text-[10px] font-mono text-muted-foreground/50 leading-none mt-1">#{member.order_index}</span>
+                      <GripVertical className="h-4 w-4 text-muted-foreground/40 mt-0.5" />
+                    </div>
                   </div>
                   <p className="text-sm text-muted-foreground truncate">{member.role_title}</p>
                   <Badge
