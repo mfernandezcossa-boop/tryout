@@ -15,12 +15,27 @@ marca, se cambia acá.
 - Muchas dudas, poco tiempo. Consume en el celular, en pausas.
 - Confía más en experiencias reales y recomendaciones que en estadísticas.
 
+## Idioma y localización (NO NEGOCIABLE)
+- **Todo el copy de cara a la audiencia va en español de MÉXICO, tuteo (TÚ). NUNCA voseo.**
+- Correcto: *tienes, puedes, sabes, quieres, Descarga, responde, mira, cuéntame, contigo, tu hijo*.
+- Prohibido en copy publicado: *tenés, podés, sabés, descargá, respondé, mirá, contanos, vos*.
+- (Milu escribe naturalmente en voseo —es argentina— pero la marca Brilus habla mexicano. Las
+  instrucciones de estas skills pueden estar en voseo; **el output nunca**.)
+- Vocabulario mexicano: "coche" (no "auto"), "computadora", "platicar". Evitar argentinismos.
+
 ## Voz de marca
 - Expertos que se comunican como humanos, no como clínicos.
 - Siempre del lado de la familia, nunca por encima.
+- **Cálida y sororal**: le habla de mamá a mamá. Valida antes de informar. Frases marca de la casa:
+  *"no estás exagerando: estás cuidando"*, *"el siguiente paso no lo das sola"*, *"lo vemos juntas"*, *"Te leo"*.
 - Optimistas con evidencia: no falsa esperanza, sí posibilidad real.
 - Directos sin ser agresivos.
 - **Prohibido siempre:** promesas de cura, alarmismo, jerga sin traducir, "¡¡!!", MAYÚSCULAS completas, clichés corporativos ("Estamos emocionados de anunciar", "Oferta limitada").
+
+## Firma y remitente
+- Los emails se firman en primera persona, humano: **"Te leo,\n[Nombre] de Brilus"**.
+- Personas que firman: **Emi** (Emi de Brilus) o **Miluli**. Confirmar con Milu quién firma cada envío.
+- Saludo estándar: **"¡Hola, {{ contact.FIRSTNAME }}!"** (merge tag de Brevo).
 
 ## Terreno temático
 Autismo, TDAH, terapia ABA, neurodesarrollo infantil, crianza, escuela e inclusión, sobrecarga
@@ -53,11 +68,24 @@ Cada pieza publicada cumple **al menos uno**:
 - Tags Brevo por etapa: `Brilus - Bienvenida` / `Brilus - Cold` / `Brilus - Warm` / `Brilus - Active`.
 
 ## Identidad visual
-- Azul `#4686EF` — educativo, headers, fondos principales.
+
+Hay **dos sistemas según la superficie** — no mezclarlos:
+
+**Social (Instagram / carruseles / reels):**
+- Azul `#4686EF` — educativo, headers, fondos.
 - Coral `#FC683D` — impacto, CTA, acentos.
-- Blanco — fondo limpio, legibilidad.
-- Oscuro `#1F1F1F` — solo para máximo impacto (covers).
-- Tipografía: **Poppins** (Bold para titulares, Regular para cuerpo).
+- Oscuro `#1F1F1F` — covers de máximo impacto.
+- Tipografía: **Poppins** (Bold titulares, Regular cuerpo).
+
+**Email / newsletter (Brevo/Flowdesk):**
+- Fondo **lavanda** claro (~`#EAECFB`).
+- Tipografía **serif** editorial (display y cuerpo) — NO Poppins.
+- **Resaltador amarillo** (`~#FCE94F`) sobre frases clave y etiquetas de sección (ej. "Foco del Webinar"). Firma gráfica de la marca.
+- Botón CTA: **azul marino** (`~#1F3A5F`), texto blanco, esquinas apenas redondeadas.
+- Footer: banda **azul marino** con wordmark **brilus** + su símbolo (destello amarillo) + Unsubscribe.
+- Imágenes: **cutout/collage B&N halftone con trazos amarillos** hechos a mano; foto del remitente como recorte con contorno azul y destellos ✨.
+- Reglas horizontales finas entre secciones. Emoji inline con moderación (🎥 📌).
+- Boilerplate de footer: *"Somos un centro de intervención temprana especializado en autismo y TDAH. Acompañamos a familias como la tuya, en México, a entender, prevenir y manejar los momentos difíciles."*
 
 ## Stack de herramientas
 - **Notion** — planeación y tracking. Base "🎯 Iniciativas — Brilus".

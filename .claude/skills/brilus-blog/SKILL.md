@@ -93,6 +93,7 @@ Respuesta breve y directa. (3-5 FAQs — ayudan a SEO y a resolver objeciones.)
 - Cierre con un CTA suave y honesto: agendar consulta gratuita, descargar guía, o leer artículo relacionado. Un solo CTA principal.
 - Prohibido: promesas de cura, alarmismo, jerga sin traducir, relleno.
 - Optimista con evidencia. Del lado de la familia. Experto que habla como humano.
+- **Idioma: español de México, tuteo (TÚ). NUNCA voseo** (tienes/puedes/mira, no tenés/podés/mirá). Vocabulario mexicano.
 - E-E-A-T: cuando afirmes algo clínico, anclalo ("según la evaluación diagnóstica", "en terapia ABA se trabaja...") sin inventar estadísticas ni fuentes falsas. Si hace falta un dato, marcarlo como `[VERIFICAR DATO]` para que Milu lo complete.
 
 ---

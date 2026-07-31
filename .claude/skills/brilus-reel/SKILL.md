@@ -77,14 +77,16 @@ AUDIO: [tono de voz / trending audio / silencio con música suave]
 - 15s → 3–4 escenas · 30s → 4–6 escenas · 45–60s → 6–9 escenas.
 
 **Reglas de copy (voz Brilus):**
-- Segunda persona: "tu hijo", "vos/tú sabés", "tu familia".
+- Idioma: **español de México, tuteo (TÚ). NUNCA voseo.** Correcto: "tú sabes", "mira", "guárdalo", "cuéntame". Prohibido: "sabés", "mirá", "guardalo", "vos".
+- Tono cálido y sororal (de mamá a mamá); validar antes de informar ("no estás exagerando: estás cuidando").
+- Segunda persona: "tu hijo", "tú sabes", "tu familia".
 - Sin tecnicismos sin traducir. Si aparece "ABA", "conducta objetivo", "reforzador" → explicarlo en la misma frase.
 - Empático + experto + cálido. Nunca condescendiente, nunca clínico frío, nunca falsa esperanza.
 - Prohibido: jerga corporativa, "¡¡!!", MAYÚSCULAS completas, promesas de cura.
 - Optimista con evidencia: posibilidad real, no milagro.
 
 **Guía por formato:**
-- `hook_educativo`: HOOK contraintuitivo → 2–3 escenas que explican el porqué → CIERRE con "guardalo/compartilo".
+- `hook_educativo`: HOOK contraintuitivo → 2–3 escenas que explican el porqué → CIERRE con "guárdalo/compártelo".
 - `pov_familia`: HOOK "POV:..." emocional → desarrollo de la vivencia → giro de esperanza → CTA suave (comentá/DM).
 - `lista_rapida`: HOOK con número y promesa → una escena por ítem → CIERRE con síntesis + CTA guardar.
 - `mito_verdad`: HOOK con el mito en pantalla ("MITO:...") → derribo con evidencia → postura Brilus → CTA.
@@ -97,7 +99,7 @@ AUDIO: [tono de voz / trending audio / silencio con música suave]
 CAPTION INSTAGRAM:
 [Primera línea = gancho que funcione solo en el feed, distinto al hook del video]
 [2-4 párrafos cortos: contexto, por qué importa para Mariana, mini-desarrollo del tema]
-[CTA final alineado al del video: "Guardalo 🔖", "Etiquetá a alguien que...", "Link en bio 👆"]
+[CTA final alineado al del video (en TÚ mexicano): "Guárdalo 🔖", "Etiqueta a alguien que...", "Link en bio 👆"]
 
 HASHTAGS (12-18):
 #brilus #terapiaABA #autismomexico #TDAH #neurodesarrollo [+ específicos del tema y de CDMX]
