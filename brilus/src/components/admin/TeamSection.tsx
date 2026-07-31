@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import { Plus, Search, Edit, Trash2, User, Filter, ChevronUp, ChevronDown } from "lucide-react";
+import { useState, useEffect, useRef } from "react";
+import { Plus, Search, Edit, Trash2, User, Filter, GripVertical } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
@@ -61,10 +61,11 @@ export const TeamSection = () => {
   const [roleFilter, setRoleFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all");
   const [deleteTarget, setDeleteTarget] = useState<TeamMember | null>(null);
-  const [reordering, setReordering] = useState(false);
+  const [saving, setSaving] = useState(false);
+  const dragId = useRef<string | null>(null);
+  const dragOverId = useRef<string | null>(null);
 
   const isAdmin = userRoles.roles.includes("admin");
-  const isFiltering = search !== "" || roleFilter !== "all" || statusFilter !== "all";
 
   useEffect(() => {
     fetchMembers();
@@ -112,32 +113,54 @@ export const TeamSection = () => {
     setDeleteTarget(null);
   };
 
-  const moveOrder = async (id: string, direction: "up" | "down") => {
-    const target = members.find(m => m.id === id);
-    if (!target) return;
-    const sorted = [...members]
-      .filter(m => m.category === target.category)
-      .sort((a, b) => a.order_index - b.order_index);
-    const idx = sorted.findIndex(m => m.id === id);
-    const swapIdx = direction === "up" ? idx - 1 : idx + 1;
-    if (swapIdx < 0 || swapIdx >= sorted.length) return;
+  const handleDragStart = (id: string) => {
+    dragId.current = id;
+  };
 
-    const a = sorted[idx];
-    const b = sorted[swapIdx];
-    setReordering(true);
-    const [r1, r2] = await Promise.all([
-      supabase.from("team_members").update({ order_index: b.order_index }).eq("id", a.id),
-      supabase.from("team_members").update({ order_index: a.order_index }).eq("id", b.id),
-    ]);
-    setReordering(false);
-    if (r1.error || r2.error) {
-      toast({ title: "Error", description: "No se pudo cambiar el orden", variant: "destructive" });
+  const handleDragOver = (e: React.DragEvent, id: string) => {
+    e.preventDefault();
+    dragOverId.current = id;
+  };
+
+  const handleDrop = async () => {
+    const fromId = dragId.current;
+    const toId = dragOverId.current;
+    dragId.current = null;
+    dragOverId.current = null;
+    if (!fromId || !toId || fromId === toId) return;
+
+    const from = members.find(m => m.id === fromId);
+    const to = members.find(m => m.id === toId);
+    if (!from || !to || from.category !== to.category) return;
+
+    // Reorder within the category: reassign order_index values based on new position
+    const categoryMembers = [...members]
+      .filter(m => m.category === from.category)
+      .sort((a, b) => a.order_index - b.order_index);
+
+    const fromIdx = categoryMembers.findIndex(m => m.id === fromId);
+    const toIdx = categoryMembers.findIndex(m => m.id === toId);
+    const reordered = [...categoryMembers];
+    reordered.splice(fromIdx, 1);
+    reordered.splice(toIdx, 0, from);
+
+    // Assign new order_index values (use the original values to preserve spacing with other categories)
+    const originalIndexes = categoryMembers.map(m => m.order_index).sort((a, b) => a - b);
+    const updates = reordered.map((m, i) => ({ id: m.id, order_index: originalIndexes[i] }));
+
+    setSaving(true);
+    const results = await Promise.all(
+      updates.map(u => supabase.from("team_members").update({ order_index: u.order_index }).eq("id", u.id))
+    );
+    setSaving(false);
+
+    if (results.some(r => r.error)) {
+      toast({ title: "Error", description: "No se pudo guardar el orden", variant: "destructive" });
     } else {
-      setMembers(members.map(m => {
-        if (m.id === a.id) return { ...m, order_index: b.order_index };
-        if (m.id === b.id) return { ...m, order_index: a.order_index };
-        return m;
-      }).sort((x, y) => x.order_index - y.order_index));
+      const updateMap = Object.fromEntries(updates.map(u => [u.id, u.order_index]));
+      setMembers(members.map(m => updateMap[m.id] !== undefined ? { ...m, order_index: updateMap[m.id] } : m)
+        .sort((a, b) => a.order_index - b.order_index));
+      toast({ title: "Orden guardado" });
     }
   };
 
@@ -257,13 +280,14 @@ export const TeamSection = () => {
       ) : (
         <>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredMembers.map((member) => {
-            const segmentMembers = filteredMembers.filter(m => m.category === member.category);
-            const segmentIdx = segmentMembers.findIndex(m => m.id === member.id);
-            return (
+          {filteredMembers.map((member) => (
             <div
               key={member.id}
-              className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md group"
+              draggable
+              onDragStart={() => handleDragStart(member.id)}
+              onDragOver={(e) => handleDragOver(e, member.id)}
+              onDrop={handleDrop}
+              className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md cursor-grab active:cursor-grabbing active:opacity-50 active:scale-[0.98]"
             >
               {/* Top row: avatar + info + badge */}
               <div className="flex items-start gap-4 mb-4">
@@ -281,30 +305,7 @@ export const TeamSection = () => {
                 <div className="flex-1 min-w-0">
                   <div className="flex items-start justify-between gap-1">
                     <h3 className="font-semibold text-foreground truncate">{member.name}</h3>
-                    {(
-                      <div className="flex flex-col gap-0.5 flex-shrink-0">
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
-                          onClick={() => moveOrder(member.id, "up")}
-                          disabled={reordering || segmentIdx === 0}
-                          aria-label="Mover arriba"
-                        >
-                          <ChevronUp className="h-3 w-3" />
-                        </Button>
-                        <Button
-                          variant="ghost"
-                          size="icon"
-                          className="h-5 w-5 text-muted-foreground hover:text-foreground"
-                          onClick={() => moveOrder(member.id, "down")}
-                          disabled={reordering || segmentIdx === segmentMembers.length - 1}
-                          aria-label="Mover abajo"
-                        >
-                          <ChevronDown className="h-3 w-3" />
-                        </Button>
-                      </div>
-                    )}
+                    <GripVertical className="h-4 w-4 text-muted-foreground/40 flex-shrink-0 mt-0.5" />
                   </div>
                   <p className="text-sm text-muted-foreground truncate">{member.role_title}</p>
                   <Badge
@@ -356,10 +357,8 @@ export const TeamSection = () => {
                 </div>
               </div>
             </div>
-            );
-          })}
+          ))}
         </div>
-        </>
       )}
 
       {/* Delete confirmation dialog */}
