@@ -250,6 +250,7 @@ export const TeamSection = () => {
           )}
         </div>
       ) : (
+        <>
         {isFiltering && (
           <p className="text-xs text-muted-foreground bg-muted/50 rounded-lg px-3 py-2">
             Los botones ↑ ↓ de orden solo están disponibles sin filtros activos.
@@ -354,6 +355,7 @@ export const TeamSection = () => {
             </div>
           ))}
         </div>
+        </>
       )}
 
       {/* Delete confirmation dialog */}
