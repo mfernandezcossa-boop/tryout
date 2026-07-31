@@ -244,9 +244,9 @@ export const TeamSection = () => {
 
       {/* Cards Grid */}
       {loading ? (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-col md:flex-row md:overflow-x-auto gap-4 md:pb-3">
           {[1, 2, 3].map(i => (
-            <div key={i} className="bg-card rounded-xl border p-6 animate-pulse">
+            <div key={i} className="bg-card rounded-xl border p-6 animate-pulse md:w-72 md:flex-shrink-0">
               <div className="flex items-center gap-4 mb-4">
                 <div className="w-16 h-16 rounded-full bg-muted" />
                 <div className="space-y-2 flex-1">
@@ -280,7 +280,7 @@ export const TeamSection = () => {
           )}
         </div>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="flex flex-col md:flex-row md:overflow-x-auto md:pb-3 gap-4 md:snap-x md:snap-mandatory">
           {filteredMembers.map((member) => (
             <div
               key={member.id}
@@ -288,7 +288,7 @@ export const TeamSection = () => {
               onDragStart={() => handleDragStart(member.id)}
               onDragOver={(e) => handleDragOver(e, member.id)}
               onDrop={handleDrop}
-              className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md cursor-grab active:cursor-grabbing active:opacity-50 active:scale-[0.98]"
+              className="bg-card rounded-xl border p-5 transition-all duration-200 hover:shadow-md cursor-grab active:cursor-grabbing active:opacity-50 active:scale-[0.98] md:w-72 md:flex-shrink-0 md:snap-start"
             >
               {/* Top row: avatar + info + badge */}
               <div className="flex items-start gap-4 mb-4">
