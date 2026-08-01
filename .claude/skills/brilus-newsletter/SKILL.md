@@ -102,7 +102,7 @@ Frase puente que conecte el contenido educativo con la acción.
 
 [CTA ÚNICO]
 → [Verbo de acción] + [beneficio concreto]
-Ejemplos: "Agendá tu consulta gratuita aquí" / "Descargá la guía completa" / "Escribinos y te respondemos hoy"
+Ejemplos: "Agenda tu consulta gratuita aquí" / "Descarga la guía completa" / "Escríbenos y te respondemos hoy"
 
 [CIERRE HUMANO — 2-3 líneas]
 Firma cálida, sin formalidad corporativa. Puede incluir nombre del terapeuta o del equipo.
@@ -198,10 +198,10 @@ Objetivos duales: que el lead conozca Brilus + agendar consulta gratuita.
 
 | Email | Día | Tema | Objetivo | CTA |
 |-------|-----|------|----------|-----|
-| E1 | 0 | Bienvenida + qué es Brilus | Confianza inicial | Conocé cómo trabajamos |
-| E2 | 3 | El proceso terapéutico ABA explicado | Educación / reducir miedos | Leé la guía completa |
-| E3 | 7 | Historia real / testimonio de familia | Prueba social / conexión emocional | Agendá tu consulta |
-| E4 | 10 | Última oportunidad + respuesta a objeciones comunes | Conversión directa | Agendá tu consulta gratuita |
+| E1 | 0 | Bienvenida + qué es Brilus | Confianza inicial | Conoce cómo trabajamos |
+| E2 | 3 | ABA sin rodeos: lo que escuchaste y cómo es hoy | Confianza / percepción honesta | Lee la guía honesta |
+| E3 | 7 | Historia real / testimonio de familia | Prueba social / conexión emocional | Agenda tu consulta |
+| E4 | 10 | Última oportunidad + respuesta a objeciones comunes | Conversión directa | Agenda tu consulta gratuita |
 
 ---
 
@@ -220,12 +220,13 @@ Si pide un email específico de la serie (ej. "escribime el E3"), generá solo e
 - CTA suave: invitar a conocer más, no a comprar todavía
 - Sin mencionar precios ni proceso de agendamiento aún
 
-**E2 — Día 3: Educación ABA**
-- Tono: técnico pero accesible, posición de autoridad empática
-- Apertura: conectar con una duda frecuente de los papás ("¿Qué es exactamente la terapia ABA?")
-- Cuerpo: desmitificar ABA, explicar cómo funciona en casa, qué rol tiene la familia
-- CTA: recurso educativo (guía, artículo, video) — no agendar todavía
-- UTM utm_content: `text_link_guia_aba`
+**E2 — Día 3: ABA sin rodeos (percepción honesta, no "explicación")**
+- Aplicar la **Postura sobre ABA** de `contexto-marca.md`: el tema no es que la familia "no sepa qué es ABA", sino que quizás escuchó que está mal vista.
+- Tono: honesto, empático, NO defensivo. Informar y dejar decidir, no militar ABA.
+- Apertura: reconocer lo que quizás escuchó — "Tal vez oíste que la terapia ABA es controversial o que 'está mal vista'. Hablemos de eso con honestidad."
+- Cuerpo: de dónde viene esa idea, cómo es el ABA ético/actual y cómo lo hace Brilus (juego, asentimiento del niño, respeto, calidad de vida — no "normalizar"). Cerrar con "tú decides".
+- CTA: recurso educativo honesto (guía/artículo/video/Live) — no agendar todavía
+- UTM utm_content: `text_link_aba_honesto`
 
 **E3 — Día 7: Testimonio**
 - Tono: narrativo, emocional, en primera persona del testimonio
@@ -239,7 +240,7 @@ Si pide un email específico de la serie (ej. "escribime el E3"), generá solo e
 - Tono: directo, urgente pero no agresivo
 - Apertura: reconocer que quizás todavía tienen dudas
 - Cuerpo: responder las 3 objeciones más comunes (precio, tiempo, si realmente funciona)
-- CTA: el más directo de toda la serie — "Agendá tu consulta gratuita, sin compromiso"
+- CTA: el más directo de toda la serie — "Agenda tu consulta gratuita, sin compromiso"
 - UTM utm_content: `cta_agendar_final`
 
 ---
@@ -250,7 +251,7 @@ Formato base: `?utm_source=newsletter_brilus&utm_medium=email&utm_campaign=bienv
 
 Identificadores por email:
 - E1: `cta_conoce_brilus`
-- E2: `text_link_guia_aba`
+- E2: `text_link_aba_honesto`
 - E3: `cta_agendar_testimonio`
 - E4: `cta_agendar_final`
 

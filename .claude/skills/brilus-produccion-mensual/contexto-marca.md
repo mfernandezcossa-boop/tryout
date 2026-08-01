@@ -42,6 +42,25 @@ Autismo, TDAH, terapia ABA, neurodesarrollo infantil, crianza, escuela e inclusi
 sensorial, rutinas en casa, diagnóstico y evaluación, derivaciones. Regla del **Ecosistema**: el niño
 no vive en el consultorio — vive en casa, el aula, la fiesta, el tráfico.
 
+## Postura sobre ABA (reencuadre — reunión de contenido con Nils, 30/07/2026)
+**El error a NO cometer:** asumir que "las familias no saben qué es ABA" y explicárselo desde arriba.
+No es un problema de ignorancia.
+
+**La realidad:** en México circula mensaje **negativo** sobre ABA — dos familias en un mes dijeron que ABA
+"está mal visto". Es un problema de **percepción y confianza**, no de información.
+
+**Cómo se trata ABA en TODO el contenido:**
+- **Reconocer la preocupación de frente:** "Quizás escuchaste que la terapia ABA es controversial o que
+  'está mal vista'." Validar, no esquivar.
+- **Informar con honestidad:** de dónde viene la crítica, cómo es el ABA ético/actual, y cómo lo practica
+  Brilus (basado en juego y en el asentimiento del niño, respeta a la persona, foco en calidad de vida —
+  no en "normalizar" ni en obediencia).
+- **Dejar decidir a la familia.** Tono de informar, NO de militar ni vender ABA (postura acordada con Nils):
+  "Tú decides; nuestro trabajo es darte información honesta." Nunca condescendiente ni a la defensiva.
+
+**Dónde vive este tema:** Instagram (carruseles con postura clara + Live con Carla y Pato) y blog. En
+newsletter va liviano, no como deep-dive clínico (el blog carga la profundidad).
+
 ## Los 4 Valores de Contenido (del flywheel de contenido)
 Cada pieza publicada cumple **al menos uno**:
 1. **Traducción clínica** — cumple la promesa del traductor: convierte diagnóstico, terapia ABA y lenguaje clínico en acción aplicable hoy.

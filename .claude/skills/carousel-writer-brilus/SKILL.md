@@ -139,6 +139,11 @@ COVER ALTERNATIVO:
 - Optimistas con evidencia: no falsa esperanza, sí posibilidad real
 - Directos sin ser agresivos
 
+**Postura sobre ABA (reencuadre 30/07):**
+- El tema NO es que la familia "no sepa qué es ABA". Es que escuchó que ABA "está mal vista" en México.
+- Reconocer la controversia de frente → informar con honestidad (ABA ético/actual, cómo lo hace Brilus: juego, asentimiento del niño, calidad de vida, no "normalizar") → **dejar que la familia decida**.
+- Tono: informar, no militar ABA ni ponerse a la defensiva. Formato acordado para esto: carrusel `myth_bust` con postura clara + Live (Carla y Pato).
+
 **Persona objetivo: Mariana**
 - Mamá de 35-45 años, CDMX o zona metropolitana
 - Su hijo recibió diagnóstico reciente o está en proceso de evaluación

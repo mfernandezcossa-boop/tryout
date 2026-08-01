@@ -75,6 +75,7 @@ MAPA DEL MES — Tema Pilar: [tema] · Mes: [mes/año]
 ```
 
 **Reglas del mapa:**
+- Cuando una pieza toque **ABA / el método**, aplicar la **Postura sobre ABA** de `contexto-marca.md`: reconocer la controversia → informar → dejar decidir. Nunca "explicar qué es ABA" como si la familia fuera ignorante.
 - Ningún hook se repite entre piezas.
 - Cubrir los 4 pilares y los 4 valores del flywheel al menos una vez cada uno.
 - El blog es la pieza "ancla" (más larga y buscable); reels y carruseles pueden derivar de sus subtemas.

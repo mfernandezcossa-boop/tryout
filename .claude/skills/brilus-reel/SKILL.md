@@ -87,7 +87,7 @@ AUDIO: [tono de voz / trending audio / silencio con música suave]
 
 **Guía por formato:**
 - `hook_educativo`: HOOK contraintuitivo → 2–3 escenas que explican el porqué → CIERRE con "guárdalo/compártelo".
-- `pov_familia`: HOOK "POV:..." emocional → desarrollo de la vivencia → giro de esperanza → CTA suave (comentá/DM).
+- `pov_familia`: HOOK "POV:..." emocional → desarrollo de la vivencia → giro de esperanza → CTA suave (comenta/DM).
 - `lista_rapida`: HOOK con número y promesa → una escena por ítem → CIERRE con síntesis + CTA guardar.
 - `mito_verdad`: HOOK con el mito en pantalla ("MITO:...") → derribo con evidencia → postura Brilus → CTA.
 - `detras_de_brilus`: HOOK que muestra algo real del método → qué está pasando y por qué importa → CTA agendar/conocer.
