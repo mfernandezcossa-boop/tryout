@@ -55,6 +55,10 @@ No es un problema de ignorancia.
 - **Informar con honestidad:** de dónde viene la crítica, cómo es el ABA ético/actual, y cómo lo practica
   Brilus (basado en juego y en el asentimiento del niño, respeta a la persona, foco en calidad de vida —
   no en "normalizar" ni en obediencia).
+- **Anclar siempre con una definición breve y llana de qué es ABA**, aunque el ángulo sea la controversia:
+  *"ABA (Análisis de Conducta Aplicado) es una terapia que enseña habilidades —comunicación, autonomía,
+  juego— paso a paso y refuerza los avances."* No asumir que todos saben; pero la definición es el **ancla,
+  no el ángulo** (va temprano y breve, no ocupa toda la pieza).
 - **Dejar decidir a la familia.** Tono de informar, NO de militar ni vender ABA (postura acordada con Nils):
   "Tú decides; nuestro trabajo es darte información honesta." Nunca condescendiente ni a la defensiva.
 
