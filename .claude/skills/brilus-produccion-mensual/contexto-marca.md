@@ -65,6 +65,9 @@ No es un problema de ignorancia.
   varias (mostrada por lo que de verdad sirve, no como la única). Esto desactiva el "mal visto" mejor que
   defender ABA. Terrenos válidos: comunicación/lenguaje, autonomía y habilidades, regulación sensorial y
   motricidad, juego y vínculo, habilidades sociales, apoyo emocional.
+- **Pero la pieza SÍ debe abordar ABA de frente.** El ángulo comparativo/honesto es el *lente*, no una
+  excusa para diluir: no hacer contenido genérico de terapias que nunca nombra ABA. ABA es el sujeto —
+  se la trata directo (para qué sirve y para qué no, la controversia, cómo la hace Brilus vs. la critican).
 - **Dejar decidir a la familia.** Tono de informar, NO de militar ni vender ABA (postura acordada con Nils).
   Nunca condescendiente ni a la defensiva.
 - **Toda comparación clínica la revisa un clínico (Michelle) antes de publicar.** Marcar afirmaciones a
