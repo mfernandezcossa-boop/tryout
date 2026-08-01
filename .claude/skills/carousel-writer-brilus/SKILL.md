@@ -142,8 +142,9 @@ COVER ALTERNATIVO:
 **Postura sobre ABA (reencuadre 30/07):**
 - El tema NO es que la familia "no sepa qué es ABA". Es que escuchó que ABA "está mal vista" en México.
 - Reconocer la controversia de frente → informar con honestidad (ABA ético/actual, cómo lo hace Brilus: juego, asentimiento del niño, calidad de vida, no "normalizar") → **dejar que la familia decida**.
-- **Anclar siempre con una definición breve de qué es ABA** (slide temprano, 1 línea): *"ABA (Análisis de Conducta Aplicado): terapia que enseña habilidades paso a paso y refuerza los avances."* La definición es el ancla, no el ángulo.
-- Tono: informar, no militar ABA ni ponerse a la defensiva. Formato acordado para esto: carrusel `myth_bust` con postura clara + Live (Carla y Pato).
+- **Definir ABA solo cuando la pieza lo necesita** (1 línea ancla), no en cada carrusel ni como ángulo central. No ser demasiado explícito/defensivo.
+- **Ángulo preferido: comparar métodos / "mejor terapia para cada objetivo".** Brilus como guía honesta que ayuda a matchear necesidad → terapia (comunicación/lenguaje, autonomía/habilidades, sensorial/motricidad, juego/vínculo, habilidades sociales, apoyo emocional), con ABA como una opción entre varias.
+- Tono: informar, no militar ABA. Toda comparación clínica se revisa con un clínico (Michelle); marcar dudas con `[VERIFICAR CON CLÍNICO]`. Formatos: `framework`/`the_list` comparativos + Live (Carla y Pato).
 
 **Persona objetivo: Mariana**
 - Mamá de 35-45 años, CDMX o zona metropolitana

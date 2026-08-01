@@ -55,12 +55,20 @@ No es un problema de ignorancia.
 - **Informar con honestidad:** de dónde viene la crítica, cómo es el ABA ético/actual, y cómo lo practica
   Brilus (basado en juego y en el asentimiento del niño, respeta a la persona, foco en calidad de vida —
   no en "normalizar" ni en obediencia).
-- **Anclar siempre con una definición breve y llana de qué es ABA**, aunque el ángulo sea la controversia:
-  *"ABA (Análisis de Conducta Aplicado) es una terapia que enseña habilidades —comunicación, autonomía,
-  juego— paso a paso y refuerza los avances."* No asumir que todos saben; pero la definición es el **ancla,
-  no el ángulo** (va temprano y breve, no ocupa toda la pieza).
-- **Dejar decidir a la familia.** Tono de informar, NO de militar ni vender ABA (postura acordada con Nils):
-  "Tú decides; nuestro trabajo es darte información honesta." Nunca condescendiente ni a la defensiva.
+- **Definir ABA solo cuando la pieza lo necesita, no en todas.** Una línea llana como ancla
+  (*"ABA / Análisis de Conducta Aplicado: enseña habilidades paso a paso y refuerza los avances"*), nunca
+  como ángulo central ni repetida en cada post.
+- **Variar el ángulo y no ser demasiado explícito/defensivo.** No hace falta atacar la controversia de frente
+  en cada pieza; el reencuadre se sostiene mejor con posición honesta que con defensa.
+- **Ángulo preferido: comparar métodos / "la mejor terapia para cada objetivo".** Posicionar a Brilus como
+  **guía honesta** que ayuda a la familia a matchear necesidad → terapia, con ABA como una opción entre
+  varias (mostrada por lo que de verdad sirve, no como la única). Esto desactiva el "mal visto" mejor que
+  defender ABA. Terrenos válidos: comunicación/lenguaje, autonomía y habilidades, regulación sensorial y
+  motricidad, juego y vínculo, habilidades sociales, apoyo emocional.
+- **Dejar decidir a la familia.** Tono de informar, NO de militar ni vender ABA (postura acordada con Nils).
+  Nunca condescendiente ni a la defensiva.
+- **Toda comparación clínica la revisa un clínico (Michelle) antes de publicar.** Marcar afirmaciones a
+  verificar con `[VERIFICAR CON CLÍNICO]`; no inventar eficacias ni nombres de métodos.
 
 **Dónde vive este tema:** Instagram (carruseles con postura clara + Live con Carla y Pato) y blog. En
 newsletter va liviano, no como deep-dive clínico (el blog carga la profundidad).
