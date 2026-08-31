@@ -13,15 +13,18 @@ y el resto salga con mínimo esfuerzo.
 | Recurso | Valor | Nota |
 |---|---|---|
 | Brand kit Brilus | `kAEoULAX1rY` | Colores y tipografías de marca en Canva |
+| **Brand template base** | `EAHT4ebU_LY` | Carrusel Brilus 4:5, 7 slides (cover + contenido + CTA). Base reutilizable |
 | Skill de copy | `carousel-writer-brilus` | Genera copy slide a slide con la voz de Brilus |
 | Colores | Azul `#4686EF`, Coral `#FC683D`, Fondo oscuro `#1F1F1F` | Ver skill para uso por tipo de slide |
 | Tipografía | Poppins Bold (headline) / Poppins Regular (subtexto) | |
 | Formato IG | 1080×1350 px (4:5) | Cuadrado 1080×1080 si es sólo LinkedIn |
-| Cantidad de slides | 8–10 | Cover + contenido + CTA |
+| Contacto en CTA | IG `@somosbrilus` · `familias@somosbrilus.com` · `somosbrilus.com/contacto` | Datos reales de Brilus |
+| Cantidad de slides | 7–10 | Cover + contenido + CTA |
 
-> No hay brand templates guardadas en la cuenta, por eso el diseño se **genera** aplicando el
-> brand kit, no se autollena una plantilla. Si en el futuro guardás una brand template en Canva,
-> se puede cambiar al modo "autofill" (ver sección Variantes).
+> **Camino recomendado (más consistente):** partir de la **brand template base `EAHT4ebU_LY`**,
+> instanciarla y reemplazar el texto de cada slide. Mantiene el layout y la marca idénticos cada vez.
+> El camino alternativo (generar desde outline con el brand kit) sirve para diseños nuevos, pero la
+> IA no siempre respeta colores/formato — ver "Aprendizajes" al final.
 
 ---
 
@@ -48,23 +51,27 @@ Produce: parámetros del carrusel + copy slide a slide (headline, subtexto, brie
 swipe hint) + caption IG/LinkedIn + hashtags + cover alternativo A/B.
 → Punto de revisión: aprobás el copy antes de pasar a diseño.
 
-### Paso 2 — Generar el diseño en Canva
-El carrusel es una **presentación multi-slide** en Canva. Claude usa:
+### Paso 2 — Volcar el copy en Canva
 
-1. `request-outline-review` → arma el outline (1 slide por item del copy) y te lo muestra
-   en un widget para aprobar.
-2. Al aprobar, `generate-design-structured` con:
-   - `design_type: presentation`
-   - `brand_kit_id: kAEoULAX1rY`
-   - `style`: "limpio, moderno, accesible — azul #4686EF y coral #FC683D, Poppins"
-   - `presentation_outlines`: un objeto `{title, description}` por slide, tomados del copy del Paso 1
-3. `create-design-from-candidate` para dejar el diseño editable en tu cuenta.
+**Ruta A · Recomendada — reusar la brand template base (`EAHT4ebU_LY`)**
+Mantiene layout y marca idénticos. Es el modo por defecto:
+1. `create-design-from-brand-template` con `brand_template_id: EAHT4ebU_LY` → diseño editable 4:5.
+2. `read-design` con `open_transaction: true` → devuelve los `locator_id` de cada texto por slide.
+3. `edit-design` con `replace_text` por slide → inyecta headline + subtexto del copy del Paso 1.
+4. `edit-design` con `finalize: "commit"` para guardar.
+   - Si el carrusel necesita más/menos slides que la base, `add_page` / duplicar o recortar páginas.
 
-### Paso 3 — Ajuste de marca (opcional pero recomendado)
-- `read-design` para revisar cada página.
-- `edit-design` para corregir textos que el generador haya reformulado, y asegurar:
+**Ruta B · Diseño nuevo desde cero (cuando querés otro layout)**
+1. `request-outline-review` → outline en widget para aprobar.
+2. Al aprobar, `generate-design-structured` con `design_type: presentation` + `brand_kit_id: kAEoULAX1rY`.
+3. `create-design-from-candidate` → diseño editable.
+4. `resize-design` a `1080×1350` (la generación sale en 16:9, hay que pasarla a 4:5).
+   ⚠️ La IA no siempre respeta la paleta azul/coral — suele salir en blanco/negro. Requiere pase de color manual.
+
+### Paso 3 — Ajuste de marca
+- `read-design` para revisar cada página (thumbnails).
+- `edit-design` para: limpiar cualquier placeholder de Canva, asegurar datos de contacto Brilus en el CTA,
   barra coral al pie, logo "brilus", swipe hints en slides de contenido.
-- Si hace falta el ratio 4:5 exacto de IG, `resize-design`.
 
 ### Paso 4 — Export y entrega
 - `get-export-formats` (obligatorio antes de exportar) → confirma formatos soportados.
@@ -94,12 +101,27 @@ El carrusel es una **presentación multi-slide** en Canva. Claude usa:
 - **Slides como imágenes sueltas** (sin presentación): generar cada slide con
   `generate-design` (`design_type: instagram_post`, 1080×1350) usando el `brand_kit_id`.
   Más control por slide, pero más pasos.
-- **Modo autofill con brand template**: si guardás una brand template en Canva con campos de
-  dataset, se puede pasar a `search-brand-templates (dataset: non_empty)` + autofill para que el
-  copy entre en placeholders fijos. Es el modo más consistente visualmente. Hoy no hay ninguna
-  guardada, por eso usamos generación.
+- **Modo autofill con dataset**: la template base `EAHT4ebU_LY` hoy NO tiene campos de dataset
+  (por eso se rellena con `replace_text`, no con autofill). Si más adelante se marcan sus textos
+  como campos de datos en Canva (app **Bulk create** → conectar cada campo a un texto), se puede
+  pasar al modo autofill puro, aún más automático. Mientras tanto, `replace_text` cumple igual.
 - **Sólo el copy**: si sólo querés el texto (para pasarlo a `/carousel-maker` o Canva a mano),
   corré nada más el Paso 1.
+
+---
+
+## Aprendizajes / pendientes (de la primera construcción)
+
+- La **template base `EAHT4ebU_LY`** se construyó generando un carrusel real ("Señales tempranas
+  de autismo") con el brand kit, pasándolo a 4:5 y limpiando el CTA con datos reales de Brilus.
+- ⚠️ **Color**: la base quedó en **blanco/negro + foto**, no en azul `#4686EF` / coral `#FC683D`.
+  Es un look limpio y válido, pero si se quiere la paleta de marca hay que hacer un **pase de color**
+  (recolorear fondos por rol de slide + agregar barra coral y logo "brilus"). Pendiente.
+- ⚠️ **`publish-brand-template` "consume" el diseño**: al publicar, el `design_id` deja de existir
+  como diseño y pasa a ser template. Para exportar/editar después, hay que **instanciar** la
+  template con `create-design-from-brand-template`.
+- Puede haber **lag de propagación** en Canva: un `export`/`read` justo después de resize o publish
+  puede dar "not found" un momento; reintentar o instanciar de nuevo.
 
 ---
 
